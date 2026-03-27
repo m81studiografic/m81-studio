@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "concepte": "concepte",
+    "servicii": "servicii",
+    "proces": "proces",
+    "studio": "studio",
+    "blog": "blog",
+    "contact": "contact",
+    "cta": "începe un proiect"
+  },
+  "home": {
+    "badge": "Portofoliu",
+    "hero1": "M81 Studio:",
+    "hero2": "EXPERIENȚE",
+    "hero3": "DIGITALE.",
+    "tagline": "Branding strategic & design digital pentru cei care construiesc viitorul.",
+    "lucrari": "Lucrări selectate →",
+    "stats_proiecte": "Proiecte livrate",
+    "stats_ani": "Ani de experiență",
+    "stats_clienti": "Clienți mulțumiți",
+    "stats_industrii": "Industrii acoperite",
+    "selected": "Lucru selectat",
+    "toate": "Toate proiectele",
+    "cta_title": "Hai să construim ceva împreună.",
+    "cta_sub": "Dacă ai o idee sau un produs pe care vrei să îl construiești, putem începe cu o discuție inițială.",
+    "cta_btn": "Programăm un kickoff →"
+  },
+  "projects": {
+    "back": "← Înapoi la proiecte",
+    "related": "Proiecte similare",
+    "see_all": "Vezi toate →"
+  },
+  "services": {
+    "label": "Ce facem",
+    "title": "Servicii",
+    "subtitle": "complete.",
+    "desc": "Nu suntem o agenție care livrează fișiere. Suntem parteneri care construiesc sisteme.",
+    "all": "Toate serviciile ↗",
+    "s1_title": "Strategie & Poziționare",
+    "s1_desc": "Clarificăm direcția brandului și modul în care te diferențiezi în piață — cu date reale, nu presupuneri.",
+    "s2_title": "Identitate Vizuală",
+    "s2_desc": "Logo, sistem de culori, tipografie, ghid de brand — construim o imagine coerentă pe orice canal.",
+    "s3_title": "Design UI/UX",
+    "s3_desc": "Interfețe clare, logice și frumoase — de la wireframe la prototip interactiv.",
+    "s4_title": "Dezvoltare Front-end",
+    "s4_desc": "Cod curat, performant și scalabil — Next.js, React, animații fluid."
+  },
+  "process": {
+    "label": "Cum lucrăm",
+    "p1_title": "Înțelegere",
+    "p1_desc": "Cercetăm produsul, piața și utilizatorii. Definim direcția corectă înainte de orice pixel.",
+    "p2_title": "Structură",
+    "p2_desc": "Construim arhitectura informației, wireframe-uri și prototipuri interactive.",
+    "p3_title": "Construcție",
+    "p3_desc": "Design final + cod. Livrăm un produs funcțional, testat și pregătit de lansare."
+  },
+  "cta": {
+    "ready": "Gata să începem?",
+    "kickoff": "Programăm un kickoff →"
+  }
+}

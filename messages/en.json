@@ -1,0 +1,59 @@
+{
+  "nav": {
+    "concepte": "concepts",
+    "servicii": "services",
+    "proces": "process",
+    "studio": "studio",
+    "blog": "blog",
+    "contact": "contact",
+    "cta": "start a project"
+  },
+  "home": {
+    "hero1": "M81 Studio:",
+    "hero2": "DIGITAL",
+    "hero3": "EXPERIENCES.",
+    "tagline": "Strategic branding & digital design\nfor those building the future.",
+    "lucrari": "Selected work →",
+    "stats_proiecte": "Projects delivered",
+    "stats_ani": "Years of experience",
+    "stats_clienti": "Satisfied clients",
+    "stats_industrii": "Industries covered",
+    "selected": "Selected work",
+    "toate": "All projects",
+    "cta_title": "Let's build\nsomething together.",
+    "cta_sub": "If you have an idea or a product you want to build, we can start with an initial conversation.",
+    "cta_btn": "Schedule a kickoff →"
+  },
+  "projects": {
+    "back": "← Back to projects",
+    "related": "Related projects",
+    "see_all": "See all →"
+  },
+  "services": {
+    "label": "What we do",
+    "title": "Services",
+    "subtitle": "complete.",
+    "desc": "We're not an agency that delivers files. We're partners who build systems.",
+    "all": "All services ↗",
+    "s1_title": "Strategy & Positioning",
+    "s1_desc": "We clarify the brand's direction and how you differentiate in the market — with real data, not assumptions.",
+    "s2_title": "Visual Identity",
+    "s2_desc": "Logo, color system, typography, brand guide — we build a coherent image across every channel.",
+    "s3_title": "UI/UX Design",
+    "s3_desc": "Clear, logical and beautiful interfaces — from wireframe to interactive prototype.",
+    "s4_title": "Front-end Development",
+    "s4_desc": "Clean, performant and scalable code — Next.js, React, fluid animations."
+  },
+  "process": {
+    "label": "How we work",
+    "p1_title": "Understanding",
+    "p1_desc": "We research the product, market and users. We define the right direction before any pixel.",
+    "p2_title": "Structure",
+    "p2_desc": "We build information architecture, wireframes and interactive prototypes.",
+    "p3_title": "Build",
+    "p3_desc": "Final design + code. We deliver a functional, tested product ready for launch."
+  },
+  "cta": {
+    "ready": "Ready to start?"
+  }
+}

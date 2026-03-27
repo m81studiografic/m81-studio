@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* === M81 STUDIO DESIGN SYSTEM === */
+:root {
+  /* ── SPACING SYSTEM ── */
+  --page-px: clamp(24px, 5vw, 64px);
+
+  /* ── PRIMARY ACCENT (ELECTRIC LIME) ── */
+  --lime-soft: #E6FF9A;
+  --lime-300: #D9FF66;
+  --lime-400: #C0FF00;
+  --lime: #B6FF00;
+  --lime-strong: #A3FF12;
+
+  /* ── BASE COLORS ── */
+  --cream: #ededed;
+  --gray-50: #ededed;
+  --white: #ffffff;
+
+  /* ── TEXT ── */
+  --gray-900: #141411;
+  --black: #030302;
+  --muted: rgba(13, 13, 11, 0.4);
+
+  /* ── OPTIONAL UI HELPERS ── */
+  --border-light: rgba(13, 13, 11, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.08);
+
+  /* ── GLOW (pentru hover / effects) ── */
+  --lime-glow: rgba(182, 255, 0, 0.35);
+}
+
+/* === BASE LAYOUT === */
+html,
+body {
+  min-height: max(884px, 100dvh);
+  background-color: var(--gray-50);
+  overscroll-behavior: none;
+}
+
+body {
+  color: var(--gray-900);
+}
+
+/* container spacing global (optional helper) */
+.page-padding {
+  padding-left: var(--page-px);
+  padding-right: var(--page-px);
+}
+
+/* radius "Apple-ish" */
+.card-radius {
+  border-radius: 28px;
+}
+
+/* === M81 ANIMATIONS === */
+
+@keyframes m81-ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes m81-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes m81-pulse {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .3; transform: scale(1.4); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(200vh); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html[data-m81-cursor="custom"] *,
+  html[data-m81-cursor="custom"] *::before,
+  html[data-m81-cursor="custom"] *::after {
+    cursor: none !important;
+  }
+}
