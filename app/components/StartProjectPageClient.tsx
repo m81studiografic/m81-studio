@@ -276,12 +276,12 @@ export default function StartProjectPageClient({ locale: _locale }: StartProject
               {/* dreapta — descriere */}
               <div style={{ opacity:ready?1:0, transform:ready?"translateY(0)":"translateY(16px)", transition:"opacity .9s ease 320ms, transform .9s cubic-bezier(.23,1,.32,1) 320ms" }}>
                 <p style={{ fontSize:15, fontWeight:300, lineHeight:1.85, color:"var(--muted)", margin:"0 0 28px" }}>
-                  Ai o idee, un produs sau un brand pe care vrei să îl construim — spune-ne câteva detalii și revenim în 24 de ore.
+                  Ai o idee, un produs sau un brand pe care vrei să îl dezvoltăm — spune-ne câteva detalii și revenim în 24 de ore.
                 </p>
                 <p style={{ fontSize:14, fontWeight:300, lineHeight:1.85, color:"var(--muted)", margin:0 }}>
-                  Lucrăm cu companii și antreprenori care au nevoie de{" "}
+                  Lucrăm cu afaceri și oameni care au nevoie de{" "}
                   <span style={{ fontWeight:600, color:"var(--ink)" }}>strategie, design și dezvoltare digitală</span>{" "}
-                  realizate coerent.
+                  gândite ca un singur sistem.
                 </p>
               </div>
             </div>
@@ -330,7 +330,7 @@ export default function StartProjectPageClient({ locale: _locale }: StartProject
                   <span style={{ fontSize:10, fontWeight:600, letterSpacing:"0.18em", textTransform:"uppercase", color:"var(--muted)", display:"block", marginBottom:20 }}>
                     De ce noi
                   </span>
-                  {["Răspuns în 24 de ore","Fără birocrație","Strategie + design + dev","Livrare transparentă"].map(item => (
+                  {["Răspuns în 24 de ore","Comunicare directă","Strategie + design + dezvoltare","Proces clar și colaborativ"].map(item => (
                     <div key={item} style={{ display:"flex", alignItems:"center", gap:12, marginBottom:14 }}>
                       <span style={{ width:4, height:4, borderRadius:"50%", backgroundColor:"rgba(0,0,0,0.25)", flexShrink:0 }}/>
                       <span style={{ fontSize:13, fontWeight:300, color:"rgba(0,0,0,0.55)" }}>{item}</span>

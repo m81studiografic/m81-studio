@@ -129,10 +129,10 @@ export default function HomePage() {
         <div className="border-y border-[rgba(13,13,11,0.07)]">
           <div className="max-w-[1280px] mx-auto py-10 px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { n: "48+", label: t("stats_proiecte") },
-              { n: "6", label: t("stats_ani") },
-              { n: "98%", label: t("stats_clienti") },
-              { n: "12", label: t("stats_industrii") },
+              { n: "100%", label: t("stats_solutii") },
+              { n: "24h", label: t("stats_raspuns") },
+              { n: "1:1", label: t("stats_comunicare") },
+              { n: "360°", label: t("stats_abordare") },
             ].map((s, i) => (
               <FadeUp key={s.n} delay={i * 80}>
                 <article className="text-center">
@@ -245,8 +245,8 @@ export default function HomePage() {
               </span>
               <p style={{ fontSize:"clamp(20px,2.8vw,36px)", fontWeight:300, letterSpacing:"-0.02em", lineHeight:1.65, color:"var(--black)", margin:0, maxWidth:720 }}>
                 {locale === "ro"
-                  ? <><span style={{ fontWeight:700 }}>Construim branduri clare</span>, coerente și pregătite să crească — de la strategie și identitate până la produs digital și lansare.</>
-                  : <>We build <span style={{ fontWeight:700 }}>clear, coherent brands</span> ready to grow — from strategy and identity to digital product and launch.</>
+                  ? <><span style={{ fontWeight:700 }}>Construim branduri coerente</span> și experiențe digitale create pentru oameni, business și evoluție.</>
+                  : <>We build <span style={{ fontWeight:700 }}>cohesive brands</span> and digital experiences created for people, business, and growth.</>
                 }
               </p>
             </div>

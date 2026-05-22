@@ -196,23 +196,23 @@ export default function ProcesPage() {
   }, []);
 
   const steps = isRo ? [
-    { number:"01", phase:"Etapa 1", title:"Incepem cu o conversatie", description:"Fiecare proiect incepe cu o discutie despre afacerea ta, obiectivele pe care le ai si contextul in care brandul va exista. Scopul acestei etape este sa intelegem ce construim si de ce.", activities:["Discutie initiala","Clarificarea obiectivelor","Intelegerea contextului","Definirea scopului"] },
-    { number:"02", phase:"Etapa 2", title:"Definim directia", description:"Dupa ce intelegem contextul, stabilim directia proiectului si modul in care brandul trebuie sa fie perceput. Aceasta etapa devine baza tuturor deciziilor de design.", activities:["Strategie de brand","Pozitionare","Valori si personalitate","Brief creativ"] },
-    { number:"03", phase:"Etapa 3", title:"Exploram ideile", description:"Incepem procesul creativ si dezvoltam primele directii vizuale pentru brand. Testam idei, tipografie, forme si culori pana cand identitatea incepe sa prinda contur.", activities:["Moodboard","Directii vizuale","Tipografie","Paleta de culori"] },
-    { number:"04", phase:"Etapa 4", title:"Construim identitatea", description:"Odata stabilita directia, dezvoltam un sistem vizual coerent care poate functiona in toate aplicatiile brandului. Brandul devine clar, recognoscibil si pregatit pentru utilizare.", activities:["Logo & variante","Sistem vizual","Ghid de brand","Aplicatii primare"] },
-    { number:"05", phase:"Etapa 5", title:"Extindem brandul", description:"Aplicam identitatea in contexte reale precum produse, materiale vizuale si experiente digitale. Brandul incepe sa existe in lumea reala.", activities:["Packaging","Materiale print","Assets digitale","Aplicatii secundare"] },
-    { number:"06", phase:"Etapa 6", title:"Construim website-ul", description:"Transformam designul intr-un website functional, rapid si usor de folosit. Totul este optimizat pentru claritate si experienta utilizatorului.", activities:["Design UI","Dezvoltare","Optimizare","Testare"] },
-    { number:"07", phase:"Etapa 7", title:"Lansam", description:"Dupa testare si ajustari finale, brandul si website-ul sunt lansate si devin publice. Pregatim tot ce e necesar pentru un debut fara probleme.", activities:["Verificare finala","Deploy","Lansare publica","Monitorizare initiala"] },
-    { number:"08", phase:"Etapa 8", title:"Evoluam", description:"Dupa lansare, brandul continua sa evolueze prin optimizari, actualizari si dezvoltari noi. Suntem alaturi de tine si dupa finalizarea proiectului.", activities:["Suport post-lansare","Optimizari","Actualizari","Dezvoltare continua"] },
+    { number:"01", phase:"Etapa 1", title:"Începem cu o conversație", description:"Începem prin a înțelege afacerea, obiectivele și contextul în care brandul va crește.", activities:["Discuție inițială","Clarificarea obiectivelor","Înțelegerea contextului","Definirea direcției"] },
+    { number:"02", phase:"Etapa 2", title:"Definim direcția", description:"Stabilim direcția brandului și baza tuturor deciziilor creative și strategice.", activities:["Strategie de brand","Poziționare","Valori & personalitate","Brief creativ"] },
+    { number:"03", phase:"Etapa 3", title:"Explorăm ideile", description:"Explorăm direcții vizuale și construim primele elemente ale identității brandului.", activities:["Moodboard","Direcții vizuale","Tipografie","Paletă cromatică"] },
+    { number:"04", phase:"Etapa 4", title:"Construim identitatea", description:"Construim identitatea vizuală și sistemul care va susține brandul în toate mediile de comunicare.", activities:["Logo & variante","Sistem vizual","Ghid de brand","Aplicații primare"] },
+    { number:"05", phase:"Etapa 5", title:"Extindem brandul", description:"Aplicăm identitatea brandului în produse, materiale și experiențe digitale reale.", activities:["Packaging","Materiale print","Assets digitale","Aplicații secundare"] },
+    { number:"06", phase:"Etapa 6", title:"Construim website-ul", description:"Transformăm identitatea brandului într-un website clar, rapid și ușor de folosit.", activities:["Design UI","Dezvoltare","Optimizare","Testare"] },
+    { number:"07", phase:"Etapa 7", title:"Lansăm", description:"Pregătim brandul și website-ul pentru lansare și verificăm fiecare detaliu înainte de publicare.", activities:["Verificare finală","Deploy","Lansare publică","Monitorizare inițială"] },
+    { number:"08", phase:"Etapa 8", title:"Evoluăm", description:"După lansare, continuăm să dezvoltăm, optimizăm și adaptăm brandul în timp.", activities:["Suport post-lansare","Optimizări","Actualizări","Dezvoltare continuă"] },
   ] : [
-    { number:"01", phase:"Stage 1", title:"We start with a conversation", description:"Every project starts with a discussion about your business, your goals and the context in which the brand will exist. The goal of this stage is to understand what we are building and why.", activities:["Initial discussion","Clarifying objectives","Understanding context","Defining scope"] },
-    { number:"02", phase:"Stage 2", title:"We define the direction", description:"After understanding the context, we set the project direction and how the brand should be perceived. This stage becomes the foundation for all design decisions.", activities:["Brand strategy","Positioning","Values & personality","Creative brief"] },
-    { number:"03", phase:"Stage 3", title:"We explore ideas", description:"We begin the creative process and develop the first visual directions for the brand. We test ideas, typography, shapes and colors until the identity starts taking shape.", activities:["Moodboard","Visual directions","Typography","Color palette"] },
-    { number:"04", phase:"Stage 4", title:"We build the identity", description:"Once the direction is set, we develop a coherent visual system that can work across all brand applications. The brand becomes clear, recognizable and ready for use.", activities:["Logo & variants","Visual system","Brand guidelines","Primary applications"] },
-    { number:"05", phase:"Stage 5", title:"We extend the brand", description:"We apply the identity in real contexts such as products, visual materials and digital experiences. The brand starts to exist in the real world.", activities:["Packaging","Print materials","Digital assets","Secondary applications"] },
-    { number:"06", phase:"Stage 6", title:"We build the website", description:"We transform the design into a functional, fast and easy-to-use website. Everything is optimized for clarity and user experience.", activities:["UI design","Development","Optimization","Testing"] },
-    { number:"07", phase:"Stage 7", title:"We launch", description:"After testing and final adjustments, the brand and website are launched and become public. We prepare everything needed for a smooth debut.", activities:["Final review","Deploy","Public launch","Initial monitoring"] },
-    { number:"08", phase:"Stage 8", title:"We evolve", description:"After launch, the brand continues to evolve through optimizations, updates and new developments. We stay with you even after the project is complete.", activities:["Post-launch support","Optimizations","Updates","Continuous development"] },
+    { number:"01", phase:"Stage 1", title:"We start with a conversation", description:"We start by understanding the business, the goals, and the context in which the brand will grow.", activities:["Initial discussion","Clarifying objectives","Understanding context","Defining direction"] },
+    { number:"02", phase:"Stage 2", title:"We define the direction", description:"We set the brand's direction and the foundation for every creative and strategic decision.", activities:["Brand strategy","Positioning","Values & personality","Creative brief"] },
+    { number:"03", phase:"Stage 3", title:"We explore ideas", description:"We explore visual directions and build the first elements of the brand's identity.", activities:["Moodboard","Visual directions","Typography","Color palette"] },
+    { number:"04", phase:"Stage 4", title:"We build the identity", description:"We build the visual identity and the system that will support the brand across every channel.", activities:["Logo & variants","Visual system","Brand guidelines","Primary applications"] },
+    { number:"05", phase:"Stage 5", title:"We extend the brand", description:"We apply the brand identity to real products, materials and digital experiences.", activities:["Packaging","Print materials","Digital assets","Secondary applications"] },
+    { number:"06", phase:"Stage 6", title:"We build the website", description:"We turn the brand identity into a clear, fast and easy-to-use website.", activities:["UI design","Development","Optimization","Testing"] },
+    { number:"07", phase:"Stage 7", title:"We launch", description:"We prepare the brand and the website for launch and check every detail before going public.", activities:["Final review","Deploy","Public launch","Initial monitoring"] },
+    { number:"08", phase:"Stage 8", title:"We evolve", description:"After launch, we keep developing, optimizing and adapting the brand over time.", activities:["Post-launch support","Optimizations","Updates","Continuous development"] },
   ];
 
   return (
@@ -246,14 +246,14 @@ export default function ProcesPage() {
 
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", padding:"36px 64px 52px", borderTop:"1px solid rgba(255,255,255,0.05)", opacity:ready?1:0, transition:"opacity 1s ease 700ms", flexWrap:"wrap", gap:32 }}>
             <p style={{ fontSize:14, fontWeight:300, color:"rgba(255,255,255,0.32)", maxWidth:400, lineHeight:1.8, margin:0 }}>
-              {isRo?"Fiecare proiect incepe cu o idee si se transforma intr-un brand complet printr-un proces clar si colaborativ \u2014 de la prima conversatie pana la lansare.":"Every project starts with an idea and transforms into a complete brand through a clear and collaborative process \u2014 from the first conversation to launch."}
+              {isRo?"Construim fiecare proiect printr-un proces clar, colaborativ \u0219i atent \u2014 de la idee p\u00e2n\u0103 la lansare.":"We build every project through a clear, collaborative and considered process \u2014 from idea to launch."}
             </p>
             <div style={{ display:"flex", gap:48, alignItems:"center" }}>
-              {["8","48+","100%"].map((val,i) => (
+              {["8","48+","1:1"].map((val,i) => (
                 <div key={i} style={{ textAlign:"center" }}>
                   <p style={{ fontSize:"clamp(24px,3vw,40px)", fontWeight:900, letterSpacing:"-0.04em", color:"#fff", margin:"0 0 4px", lineHeight:1 }}>{val}</p>
                   <p style={{ fontSize:9, fontWeight:800, letterSpacing:"0.18em", textTransform:"uppercase", color:"rgba(255,255,255,0.25)", margin:0 }}>
-                    {i===0?(isRo?"etape":"stages"):i===1?(isRo?"proiecte":"projects"):(isRo?"satisfactie":"satisfaction")}
+                    {i===0?(isRo?"etape":"stages"):i===1?(isRo?"concepte":"concepts"):(isRo?"colaborare":"collaboration")}
                   </p>
                 </div>
               ))}
@@ -308,8 +308,8 @@ export default function ProcesPage() {
             <FadeUp delay={80}>
               <div style={{ display:"flex", flexDirection:"column", gap:28 }}>
                 {(isRo
-                  ? ["Vezi exact cum evoluează proiectul de la idee la lansare.","Lucrăm direct cu tine, fără filtre sau procese inutile.","Fiecare etapă aduce rezultate reale pentru brandul tău."]
-                  : ["See exactly how the project evolves from idea to launch.","We work directly with you, without filters or unnecessary processes.","Every stage brings real results for your brand."]
+                  ? ["Vezi exact cum evoluează proiectul de la idee la lansare.","Lucrăm direct cu tine, fără filtre sau procese inutile.","Fiecare etapă contribuie la construcția brandului tău."]
+                  : ["See exactly how the project evolves from idea to launch.","We work directly with you, without filters or unnecessary processes.","Every stage contributes to building your brand."]
                 ).map((text,i) => (
                   <div key={i} style={{ display:"flex", gap:16, alignItems:"flex-start" }}>
                     <span style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#c4f20d", flexShrink:0, marginTop:8 }}/>
@@ -330,8 +330,8 @@ export default function ProcesPage() {
             <FadeUp delay={60}>
               <h2 style={{ fontSize:"clamp(40px,7vw,110px)", fontWeight:900, letterSpacing:"-0.055em", lineHeight:.9, color:"#fff", margin:"0 0 56px", maxWidth:900 }}>
                 {isRo
-                  ? <><span>{"Hai sa incepem"}</span><br/><span style={{ color:"rgba(255,255,255,0.18)", fontStyle:"italic" }}>{"un proiect."}</span></>
-                  : <><span>{"Let us start"}</span><br/><span style={{ color:"rgba(255,255,255,0.18)", fontStyle:"italic" }}>{"a project."}</span></>
+                  ? <><span>{"Hai să construim"}</span><br/><span style={{ color:"rgba(255,255,255,0.18)", fontStyle:"italic" }}>{"un proiect."}</span></>
+                  : <><span>{"Let's build"}</span><br/><span style={{ color:"rgba(255,255,255,0.18)", fontStyle:"italic" }}>{"a project."}</span></>
                 }
               </h2>
             </FadeUp>
@@ -341,13 +341,13 @@ export default function ProcesPage() {
                   style={{ display:"inline-flex", alignItems:"center", gap:12, backgroundColor:"#c4f20d", color:"#000", padding:"20px 44px", borderRadius:999, fontSize:13, fontWeight:900, textDecoration:"none", letterSpacing:"0.04em", transition:"transform .3s ease, box-shadow .3s ease" }}
                   onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform="scale(1.04)";(e.currentTarget as HTMLElement).style.boxShadow="0 20px 48px rgba(196,242,13,0.25)";}}
                   onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform="scale(1)";(e.currentTarget as HTMLElement).style.boxShadow="none";}}>
-                  {isRo?"Programam un kickoff":"Schedule a kickoff"} {"\u2192"}
+                  {isRo?"Trimite un mesaj":"Send a message"} {"\u2192"}
                 </Link>
                 <Link href={`/${locale}/proiecte`} data-cur="View"
                   style={{ fontSize:11, fontWeight:800, letterSpacing:"0.18em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", textDecoration:"none", borderBottom:"1px solid rgba(255,255,255,0.12)", paddingBottom:3, transition:"color .2s, border-color .2s" }}
                   onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.color="#c4f20d";(e.currentTarget as HTMLElement).style.borderColor="#c4f20d";}}
                   onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.color="rgba(255,255,255,0.35)";(e.currentTarget as HTMLElement).style.borderColor="rgba(255,255,255,0.12)";}}>
-                  {isRo?"Vezi lucrarile noastre":"View our work"} {"\u2192"}
+                  {isRo?"Vezi proiectele":"View projects"} {"\u2192"}
                 </Link>
               </div>
             </FadeUp>

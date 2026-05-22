@@ -183,7 +183,7 @@ function ContactForm({ locale }: ContactPageClientProps) {
       </div>
 
       <div>
-        <label style={{ fontSize:10, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", color:"var(--muted)", display:"block", marginBottom:8 }}>{isRo ? "Tipul proiectului" : "Project type"}</label>
+        <label style={{ fontSize:10, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", color:"var(--muted)", display:"block", marginBottom:8 }}>{isRo ? "Tipul solicitării" : "Inquiry type"}</label>
         <select value={fields.projectType} onChange={set("projectType")} onFocus={()=>setFocused("project")} onBlur={()=>setFocused(null)}
           style={{ ...inputStyle(focused==="project"), appearance:"none", backgroundImage:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`, backgroundRepeat:"no-repeat", backgroundPosition:"right 16px center" }}>
           <option value="">{isRo ? "Selectează..." : "Select..."}</option>
@@ -197,13 +197,8 @@ function ContactForm({ locale }: ContactPageClientProps) {
       </div>
 
       <div>
-        <label style={{ fontSize:10, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", color:"var(--muted)", display:"block", marginBottom:10 }}>{isRo ? "Investiție estimată" : "Estimated budget"}</label>
-        <BudgetPills value={fields.budget} onChange={(budget) => setFields(f => ({ ...f, budget }))} options={budgetOptions}/>
-      </div>
-
-      <div>
         <label style={{ fontSize:10, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", color:"var(--muted)", display:"block", marginBottom:8 }}>{isRo ? "Mesaj" : "Message"}</label>
-        <textarea value={fields.message} onChange={set("message")} placeholder={isRo ? "Spune-ne despre proiectul tău, obiective, timeline..." : "Tell us about your project, goals, timeline..."} rows={5} onFocus={()=>setFocused("message")} onBlur={()=>setFocused(null)} style={{ ...inputStyle(focused==="message"), resize:"vertical", minHeight:120 }}/>
+        <textarea value={fields.message} onChange={set("message")} placeholder={isRo ? "Povestește-ne despre idee, obiective sau ce vrei să construim împreună." : "Tell us about the idea, the goals, or what you'd like us to build together."} rows={5} onFocus={()=>setFocused("message")} onBlur={()=>setFocused(null)} style={{ ...inputStyle(focused==="message"), resize:"vertical", minHeight:120 }}/>
       </div>
 
       <button
@@ -215,7 +210,7 @@ function ContactForm({ locale }: ContactPageClientProps) {
         onMouseEnter={e=>{(e.currentTarget).style.backgroundColor="#c4f20d";(e.currentTarget).style.color="#000";}}
         onMouseLeave={e=>{(e.currentTarget).style.backgroundColor="var(--ink)";(e.currentTarget).style.color="#fff";}}
       >
-        {submitting ? (isRo ? "Se trimite..." : "Sending...") : (isRo ? "Trimite solicitarea →" : "Send inquiry →")}
+        {submitting ? (isRo ? "Se trimite..." : "Sending...") : (isRo ? "Trimite mesajul →" : "Send message →")}
       </button>
 
       {error && (
@@ -354,13 +349,13 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
               <div style={{ backgroundColor:"var(--surface)", borderRadius:16, border:"1px solid var(--border)", padding:"44px 40px", position:"sticky", top:112 }}>
                 <div style={{ marginBottom:32 }}>
                   <span style={{ fontSize:10, fontWeight:600, letterSpacing:"0.18em", textTransform:"uppercase", color:"var(--muted)", display:"block", marginBottom:12 }}>
-                    Formular de contact
+                    {locale === "ro" ? "Formular de contact" : "Contact form"}
                   </span>
                   <h2 style={{ fontSize:"clamp(22px,2.5vw,30px)", fontWeight:700, letterSpacing:"-0.03em", margin:0, lineHeight:1.2, color:"var(--ink)" }}>
-                    Începe un proiect
+                    {locale === "ro" ? "Hai să vorbim" : "Let's talk"}
                   </h2>
                   <p style={{ fontSize:13, fontWeight:300, color:"var(--muted)", margin:"10px 0 0", lineHeight:1.7 }}>
-                    Completează formularul și te contactăm în cel mai scurt timp.
+                    {locale === "ro" ? "Spune-ne despre idee, proiect sau orice întrebare ai." : "Tell us about your idea, project, or any question you have."}
                   </p>
                 </div>
                 <ContactForm locale={locale}/>

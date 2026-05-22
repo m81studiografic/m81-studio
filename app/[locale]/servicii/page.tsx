@@ -157,19 +157,19 @@ export default function ServiciiPage() {
   useEffect(() => { setTimeout(() => setReady(true), 80); }, []);
 
   const services = isRo ? [
-    { number:"01", title:"Strategie de Brand", description:"Construim fundatia brandului tau. Inainte de design, clarificam pozitionarea, publicul si directia strategica pentru a crea un brand relevant si coerent.", tags:["Analiza business","Analiza competitie","Public tinta","Pozitionare","Tone of voice"], result:"directie strategica clara" },
-    { number:"02", title:"Identitate Vizuala", description:"Cream sistemul vizual care defineste brandul si il face recognoscibil pe toate punctele de contact.", tags:["Logo design","Tipografie","Paleta cromatica","Elemente grafice","Brand guidelines"], result:"identitate vizuala completa" },
-    { number:"03", title:"Packaging & Product Design", description:"Proiectam ambalaje si produse care reflecta identitatea brandului si creeaza o experienta memorabila pentru clienti.", tags:["Design ambalaje","Etichete produse","Design cutii","Mockups produs","Design retail"], result:"produse pregatite pentru piata" },
-    { number:"04", title:"Design Digital (UI/UX)", description:"Transformam brandul intr-o experienta digitala clara si intuitiva.", tags:["UX research","Wireframes","UI design","Prototipuri","Design system"], result:"design complet de website sau aplicatie" },
-    { number:"05", title:"Dezvoltare Website", description:"Construim website-uri rapide, moderne si optimizate pentru performanta.", tags:["Front-end dev","Integrare CMS","Optimizare","SEO tehnic","Responsive"], result:"website live si performant" },
-    { number:"06", title:"Suport & Mentenanta", description:"Brandurile nu se opresc la lansare. Oferim suport pentru evolutia continua a brandului.", tags:["Mentenanta website","Actualizari design","Optimizari","Noi functionalitati"], result:"brand stabil si pregatit sa creasca" },
+    { number:"01", title:"Strategie de Brand", description:"Înainte de design, înțelegem afacerea, publicul și direcția brandului pentru a construi o identitate clară și autentică.", tags:["Analiza business","Analiza competitie","Public tinta","Pozitionare","Tone of voice"], result:"direcție clară pentru brand" },
+    { number:"02", title:"Identitate Vizuala", description:"Creăm identități vizuale care reprezintă brandul coerent în online, produse și comunicare.", tags:["Logo design","Tipografie","Paleta cromatica","Elemente grafice","Brand guidelines"], result:"identitate vizuală completă" },
+    { number:"03", title:"Packaging & Product Design", description:"Proiectăm ambalaje și produse care reflectă identitatea brandului și creează o experiență coerentă.", tags:["Design ambalaje","Etichete produse","Design cutii","Mockups produs","Design retail"], result:"produse construite coerent" },
+    { number:"04", title:"Design Digital (UI/UX)", description:"Construim experiențe digitale ușor de folosit și aliniate cu identitatea brandului.", tags:["UX research","Wireframes","UI design","Prototipuri","Design system"], result:"design complet de website sau aplicație" },
+    { number:"05", title:"Dezvoltare Website", description:"Dezvoltăm website-uri rapide, stabile și construite pentru experiența utilizatorului.", tags:["Front-end dev","Integrare CMS","Optimizare","SEO tehnic","Responsive"], result:"website construit complet" },
+    { number:"06", title:"Suport & Mentenanta", description:"Un brand evoluează în timp. Oferim suport pentru dezvoltare, actualizare și optimizare continuă.", tags:["Mentenanta website","Actualizari design","Optimizari","Noi functionalitati"], result:"brand construit pentru evoluție" },
   ] : [
-    { number:"01", title:"Brand Strategy", description:"We build the foundation of your brand. Before design, we clarify positioning, audience and strategic direction to create a relevant and coherent brand.", tags:["Business analysis","Competition analysis","Target audience","Positioning","Tone of voice"], result:"clear strategic direction" },
-    { number:"02", title:"Visual Identity", description:"We create the visual system that defines the brand and makes it recognizable across all touchpoints.", tags:["Logo design","Typography","Color palette","Graphic elements","Brand guidelines"], result:"complete visual identity" },
-    { number:"03", title:"Packaging & Product Design", description:"We design packaging and products that reflect brand identity and create a memorable experience for customers.", tags:["Packaging design","Product labels","Box design","Product mockups","Retail design"], result:"products ready for market" },
-    { number:"04", title:"Digital Design (UI/UX)", description:"We transform the brand into a clear and intuitive digital experience.", tags:["UX research","Wireframes","UI design","Prototypes","Design system"], result:"complete website or app design" },
-    { number:"05", title:"Website Development", description:"We build fast, modern websites optimized for performance.", tags:["Front-end dev","CMS integration","Optimization","Technical SEO","Responsive"], result:"live and performant website" },
-    { number:"06", title:"Support & Maintenance", description:"Brands don\u2019t stop at launch. We offer support for the continuous evolution of the brand.", tags:["Website maintenance","Design updates","Optimization","New features"], result:"stable brand ready to grow" },
+    { number:"01", title:"Brand Strategy", description:"Before design, we understand the business, the audience and the brand direction to build a clear and authentic identity.", tags:["Business analysis","Competition analysis","Target audience","Positioning","Tone of voice"], result:"clear direction for the brand" },
+    { number:"02", title:"Visual Identity", description:"We create visual identities that represent the brand coherently across online, products and communication.", tags:["Logo design","Typography","Color palette","Graphic elements","Brand guidelines"], result:"complete visual identity" },
+    { number:"03", title:"Packaging & Product Design", description:"We design packaging and products that reflect the brand's identity and create a coherent experience.", tags:["Packaging design","Product labels","Box design","Product mockups","Retail design"], result:"products built coherently" },
+    { number:"04", title:"Digital Design (UI/UX)", description:"We build digital experiences that are easy to use and aligned with the brand's identity.", tags:["UX research","Wireframes","UI design","Prototypes","Design system"], result:"complete website or app design" },
+    { number:"05", title:"Website Development", description:"We develop fast, stable websites built around the user experience.", tags:["Front-end dev","CMS integration","Optimization","Technical SEO","Responsive"], result:"fully built website" },
+    { number:"06", title:"Support & Maintenance", description:"A brand evolves over time. We offer support for ongoing development, updates and optimization.", tags:["Website maintenance","Design updates","Optimization","New features"], result:"brand built to evolve" },
   ];
 
   const tickerItems = isRo
@@ -225,8 +225,8 @@ export default function ServiciiPage() {
               <div style={{ opacity:ready?1:0, transition:"opacity 1s ease 600ms" }}>
                 <p style={{ fontSize:14, fontWeight:300, lineHeight:1.85, color:"rgba(0,0,0,0.42)", margin:"0 0 32px", maxWidth:340 }}>
                   {isRo
-                    ? "De la strategie si identitate pana la produse, website si lansare — tot ce are nevoie un brand pentru a exista in lume."
-                    : "From strategy and identity to products, website and launch — everything a brand needs to exist in the world."
+                    ? "De la strategie și identitate până la website-uri și lansare — construim tot ce are nevoie un brand pentru a crește coerent."
+                    : "From strategy and identity to websites and launch — we build everything a brand needs to grow coherently."
                   }
                 </p>
                 <Link href={`/${locale}/incepe-un-proiect`} data-cur="Start"
@@ -271,15 +271,15 @@ export default function ServiciiPage() {
               <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:20 }}>
                 <p style={{ fontSize:14, fontWeight:300, lineHeight:1.8, color:"rgba(255,255,255,0.4)", maxWidth:280, textAlign:"right", margin:0 }}>
                   {isRo
-                    ? "Spune-ne despre proiectul tau si revenim in 24 de ore."
-                    : "Tell us about your project and we'll get back within 24 hours."
+                    ? "Spune-ne ce construiești."
+                    : "Tell us what you're building."
                   }
                 </p>
                 <Link href={`/${locale}/incepe-un-proiect`} data-cur="Start"
                   style={{ display:"inline-flex", alignItems:"center", gap:12, backgroundColor:"#fff", color:"#0d0d0b", padding:"16px 36px", borderRadius:999, fontSize:13, fontWeight:700, textDecoration:"none", letterSpacing:"0.04em", transition:"background-color .25s, color .25s" }}
                   onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.backgroundColor="#c4f20d";(e.currentTarget as HTMLElement).style.color="#000";}}
                   onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.backgroundColor="#fff";(e.currentTarget as HTMLElement).style.color="#0d0d0b";}}>
-                  {isRo ? "Programam un kickoff" : "Schedule a kickoff"} →
+                  {isRo ? "Începe un proiect" : "Start a project"} →
                 </Link>
               </div>
             </div>

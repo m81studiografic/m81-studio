@@ -108,6 +108,73 @@ function buildProjectEmail(payload: ProjectPayload) {
   return { subject, html, text };
 }
 
+function buildAutoReply(name: string | undefined, kind: "contact" | "project") {
+  const firstName = (name ?? "").trim().split(/\s+/)[0];
+  const greeting = firstName ? `Salut, ${escapeHtml(firstName)},` : "Salut,";
+
+  const subject =
+    kind === "project"
+      ? "Solicitare primită — M81 Studio"
+      : "Mesaj primit — M81 Studio";
+
+  const bodyParagraphs =
+    kind === "project"
+      ? [
+          "Mulțumim că ne-ai trimis proiectul tău. Am primit informațiile și revenim curând cu următorii pași sau câteva întrebări pentru a înțelege mai bine contextul.",
+        ]
+      : [
+          "Mulțumim că ne-ai scris. Am primit mesajul tău și revenim în maximum 24 de ore.",
+        ];
+
+  const paragraphsHtml = bodyParagraphs
+    .map(
+      (p) =>
+        `<p style="font-size:15px;line-height:1.7;color:#0d0d0b;margin:0 0 18px;">${escapeHtml(p)}</p>`,
+    )
+    .join("");
+
+  const html = `
+    <div style="font-family:'Helvetica Neue',Arial,sans-serif;background-color:#ffffff;padding:32px 24px;color:#0d0d0b;">
+      <div style="max-width:560px;margin:0 auto;">
+        <p style="font-size:15px;line-height:1.7;color:#0d0d0b;margin:0 0 18px;">${greeting}</p>
+        ${paragraphsHtml}
+        <p style="font-size:15px;line-height:1.7;color:#0d0d0b;margin:0;">— M81 Studio</p>
+      </div>
+    </div>
+  `;
+
+  const greetingText = firstName ? `Salut, ${firstName},` : "Salut,";
+  const text = [greetingText, "", ...bodyParagraphs, "", "— M81 Studio"].join("\n");
+
+  return { subject, html, text };
+}
+
+async function sendEmail(params: {
+  apiKey: string;
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+  text: string;
+  replyTo?: string;
+}) {
+  return fetch(RESEND_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${params.apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: params.from,
+      to: [params.to],
+      subject: params.subject,
+      html: params.html,
+      text: params.text,
+      reply_to: params.replyTo,
+    }),
+  });
+}
+
 export async function POST(request: Request) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const from = process.env.CONTACT_FROM_EMAIL;
@@ -134,38 +201,55 @@ export async function POST(request: Request) {
 
   const { type, payload } = body;
 
-  const email =
+  const notificationEmail =
     type === "project"
       ? buildProjectEmail(payload as ProjectPayload)
       : buildContactEmail(payload as ContactPayload);
 
-  const replyTo =
+  const senderEmail =
     typeof payload.email === "string" && payload.email.trim()
       ? payload.email.trim()
       : undefined;
 
-  const resendResponse = await fetch(RESEND_ENDPOINT, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      subject: email.subject,
-      html: email.html,
-      text: email.text,
-      reply_to: replyTo,
-    }),
+  // 1) Notification email to studio
+  const notificationResponse = await sendEmail({
+    apiKey: resendApiKey,
+    from,
+    to,
+    subject: notificationEmail.subject,
+    html: notificationEmail.html,
+    text: notificationEmail.text,
+    replyTo: senderEmail,
   });
 
-  if (!resendResponse.ok) {
-    const errorText = await resendResponse.text();
+  if (!notificationResponse.ok) {
+    const errorText = await notificationResponse.text();
     return NextResponse.json(
-      { error: "Failed to send email.", details: errorText },
+      { error: "Failed to send notification email.", details: errorText },
       { status: 502 },
     );
+  }
+
+  // 2) Auto-reply confirmation to sender (best-effort, doesn't fail the request)
+  if (senderEmail) {
+    const autoReply = buildAutoReply(payload.name, type === "project" ? "project" : "contact");
+    try {
+      const replyResponse = await sendEmail({
+        apiKey: resendApiKey,
+        from,
+        to: senderEmail,
+        subject: autoReply.subject,
+        html: autoReply.html,
+        text: autoReply.text,
+        replyTo: to,
+      });
+
+      if (!replyResponse.ok) {
+        console.error("Auto-reply failed:", await replyResponse.text());
+      }
+    } catch (err) {
+      console.error("Auto-reply error:", err);
+    }
   }
 
   return NextResponse.json({ ok: true });

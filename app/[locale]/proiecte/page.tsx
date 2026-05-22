@@ -249,8 +249,8 @@ export default function ProiectePage() {
       : projects.filter((project) => project.tags.includes(FILTERS_RO[activeFilter]));
 
   const intro = isRo
-    ? "O selecție de identități, ambalaje și produse digitale construite cu structură clară și direcție vizuală coerentă."
-    : "A selection of identities, packaging systems and digital products built with clear structure and cohesive visual direction.";
+    ? "O selecție de branduri, website-uri și produse digitale construite pentru oameni și business-uri reale."
+    : "A selection of brands, websites and digital products built for real people and businesses.";
 
   return (
     <>
@@ -336,7 +336,7 @@ export default function ProiectePage() {
               }}
             >
               <div>
-                {(isRo ? ["Proiecte", "care rămân coerente."] : ["Projects", "that stay coherent."]).map(
+                {(isRo ? ["Branduri", "construite să reziste în timp."] : ["Brands", "built to stand the test of time."]).map(
                   (line, index) => (
                     <div key={line} style={{ lineHeight: 0.9, paddingBottom: "0.12em" }}>
                       <h1

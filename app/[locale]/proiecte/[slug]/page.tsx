@@ -152,7 +152,7 @@ export default async function ProjectDetailPage({
     return (
       <main style={S.page}>
         <div style={S.inner}>
-          <Link href="/proiecte" style={S.backLink}>← Înaoi</Link>
+          <Link href="/proiecte" style={S.backLink}>← Înapoi</Link>
           <section style={{ borderRadius: 16, overflow: "hidden" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={project.image} alt={project.title} style={{ width: "100%", aspectRatio: "16/9", objectFit: "cover" as const, display: "block" }} />
@@ -186,7 +186,7 @@ export default async function ProjectDetailPage({
     return (
       <main style={S.page}>
         <div style={S.inner}>
-          <Link href="/proiecte" style={S.backLink}>← Înaoi la proiecte</Link>
+          <Link href="/proiecte" style={S.backLink}>← Înapoi la proiecte</Link>
 
           {/* HERO */}
           <section>
@@ -372,7 +372,7 @@ export default async function ProjectDetailPage({
     return (
       <main style={S.page}>
         <div style={S.inner}>
-          <Link href="/proiecte" style={S.backLink}>← Înaoi la proiecte</Link>
+          <Link href="/proiecte" style={S.backLink}>← Înapoi la proiecte</Link>
           <section>
             <div style={{ borderRadius: 20, overflow: "hidden", marginBottom: 56 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -497,7 +497,7 @@ export default async function ProjectDetailPage({
     return (
       <main style={S.page}>
         <div style={S.inner}>
-          <Link href="/proiecte" style={S.backLink}>← Înaoi la proiecte</Link>
+          <Link href="/proiecte" style={S.backLink}>← Înapoi la proiecte</Link>
           <section>
             <div style={{ borderRadius: 20, overflow: "hidden", marginBottom: 56 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -622,7 +622,7 @@ export default async function ProjectDetailPage({
     return (
       <main style={S.page}>
         <div style={S.inner}>
-          <Link href="/proiecte" style={S.backLink}>← Înaoi la proiecte</Link>
+          <Link href="/proiecte" style={S.backLink}>← Înapoi la proiecte</Link>
           <section>
             <div style={{ borderRadius: 20, overflow: "hidden", marginBottom: 56 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -763,7 +763,7 @@ export default async function ProjectDetailPage({
     return (
       <main style={S.page}>
         <div style={S.inner}>
-          <Link href="/proiecte" style={S.backLink}>← Înaoi la proiecte</Link>
+          <Link href="/proiecte" style={S.backLink}>← Înapoi la proiecte</Link>
           <section>
             <div style={{ borderRadius: 20, overflow: "hidden", marginBottom: 56 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -909,7 +909,7 @@ export default async function ProjectDetailPage({
   return (
     <main style={S.page}>
       <div style={S.inner}>
-        <Link href="/proiecte" style={S.backLink}>← Înaoi la proiecte</Link>
+        <Link href="/proiecte" style={S.backLink}>← Înapoi la proiecte</Link>
         <section>
           <div style={{ borderRadius: 20, overflow: "hidden", marginBottom: 56 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}

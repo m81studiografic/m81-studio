@@ -71,27 +71,27 @@ export default function StudioPage() {
   useEffect(() => { setTimeout(() => setReady(true), 80); }, []);
 
   const services = isRo ? [
-    { label:"Brand Identity", sub:"Identitate vizuala completa", dark:false },
-    { label:"Packaging",      sub:"Ambalaje si materiale print", dark:true },
-    { label:"Digital",        sub:"Web, UI/UX, prezenta online", dark:false },
-    { label:"Art Direction",  sub:"Directie vizuala si concepte", dark:true },
+    { label:"Identitate Vizuală", sub:"Logo, sistem vizual și ghid de brand", dark:false },
+    { label:"Packaging",          sub:"Ambalaje și materiale de produs", dark:true },
+    { label:"Website & Digital",  sub:"Website-uri și experiențe digitale", dark:false },
+    { label:"Direcție Vizuală",   sub:"Concepte și direcții creative", dark:true },
   ] : [
-    { label:"Brand Identity", sub:"Complete visual identity", dark:false },
-    { label:"Packaging",      sub:"Packaging & print materials", dark:true },
-    { label:"Digital",        sub:"Web, UI/UX, online presence", dark:false },
-    { label:"Art Direction",  sub:"Visual direction & concepts", dark:true },
+    { label:"Visual Identity",   sub:"Logo, visual system and brand guide", dark:false },
+    { label:"Packaging",         sub:"Packaging and product materials", dark:true },
+    { label:"Website & Digital", sub:"Websites and digital experiences", dark:false },
+    { label:"Visual Direction",  sub:"Concepts and creative directions", dark:true },
   ];
 
   const principles = isRo
     ? [
-        { n:"01", title:"Simplitate", text:"Eliminam complexitatea inutila si pastram doar ce conteaza cu adevarat pentru produs si utilizatori." },
-        { n:"02", title:"Structura",  text:"Construim sisteme de design consistente si scalabile, nu solutii one-off care nu pot creste." },
-        { n:"03", title:"Evolutie",   text:"Produsele noastre sunt extensibile si adaptabile pe masura ce proiectul si business-ul evolueaza." },
+        { n:"01", title:"Simplitate", text:"Eliminăm ce este inutil și păstrăm doar ce ajută brandul și utilizatorii." },
+        { n:"02", title:"Structură",  text:"Construim sisteme clare și coerente care pot crește odată cu brandul." },
+        { n:"03", title:"Evoluție",   text:"Gândim produse și experiențe digitale care pot evolua în timp, nu doar la lansare." },
       ]
     : [
-        { n:"01", title:"Simplicity", text:"We eliminate unnecessary complexity and keep only what truly matters for the product and users." },
-        { n:"02", title:"Structure",  text:"We build consistent, scalable design systems, not one-off solutions that cannot grow." },
-        { n:"03", title:"Evolution",  text:"Our products are extensible and adaptable as the project and business evolve." },
+        { n:"01", title:"Simplicity", text:"We strip away what's unnecessary and keep only what helps the brand and its users." },
+        { n:"02", title:"Structure",  text:"We build clear, coherent systems that can grow alongside the brand." },
+        { n:"03", title:"Evolution",  text:"We design products and digital experiences that can evolve over time, not just at launch." },
       ];
 
   return (
@@ -111,7 +111,7 @@ export default function StudioPage() {
               <div style={{ display:"flex", alignItems:"center", gap:8 }}>
                 <span style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#c4f20d", display:"inline-block", animation:"m81-pulse 2s ease-in-out infinite" }}/>
                 <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(255,255,255,0.22)" }}>
-                  {isRo ? "STUDIO INDEPENDENT · BUCURESTI" : "INDEPENDENT STUDIO · BUCHAREST"}
+                  {isRo ? "STUDIO INDEPENDENT · BUCUREȘTI" : "INDEPENDENT STUDIO · BUCHAREST"}
                 </span>
               </div>
             </div>
@@ -122,10 +122,10 @@ export default function StudioPage() {
                   <h1 style={{ fontSize:"clamp(56px,8vw,128px)", fontWeight:900, letterSpacing:"-0.055em", margin:0, color:i===0?"#fff":"#c4f20d", transform:ready?"translateY(0)":"translateY(108%)", opacity:ready?1:0, transition:`transform 1.2s cubic-bezier(.16,1,.3,1) ${100+i*160}ms, opacity .6s ease ${100+i*160}ms` }}>{line}</h1>
                 </div>
               ))}
-              <p style={{ fontSize:14, fontWeight:300, color:"rgba(255,255,255,0.28)", lineHeight:1.8, marginTop:28, maxWidth:320, opacity:ready?1:0, transition:"opacity .9s ease 500ms" }}>
+              <p style={{ fontSize:14, fontWeight:400, color:"rgba(255,255,255,0.62)", lineHeight:1.8, marginTop:28, maxWidth:320, opacity:ready?1:0, transition:"opacity .9s ease 500ms" }}>
                 {isRo
-                  ? "Design si dezvoltare digitala. Construim produse clare, functionale si pregatite pentru crestere."
-                  : "Digital design and development. We build clear, functional products ready for growth."
+                  ? "Branduri, produse și experiențe digitale construite cu direcție clară și atenție la detalii."
+                  : "Brands, products and digital experiences built with clear direction and attention to detail."
                 }
               </p>
             </div>
@@ -161,10 +161,10 @@ export default function StudioPage() {
             </div>
 
             <div style={{ opacity:ready?1:0, transition:"opacity 1s ease 550ms" }}>
-              <p style={{ fontSize:13, lineHeight:1.85, color:"rgba(0,0,0,0.4)", margin:0, fontWeight:300, borderTop:"1px solid rgba(0,0,0,0.07)", paddingTop:24 }}>
+              <p style={{ fontSize:14, lineHeight:1.85, color:"rgba(0,0,0,0.68)", margin:0, fontWeight:400, borderTop:"1px solid rgba(0,0,0,0.07)", paddingTop:24 }}>
                 {isRo
-                  ? "Nu suntem o agentie care livreaza fisiere. Suntem parteneri care construiesc sisteme, produse si branduri alaturi de clientii nostri."
-                  : "We are not an agency that delivers files. We are partners who build systems, products and brands alongside our clients."
+                  ? "Construim sisteme, produse și branduri alături de oamenii cu care lucrăm."
+                  : "We build systems, products and brands alongside the people we work with."
                 }
               </p>
             </div>
@@ -198,8 +198,8 @@ export default function StudioPage() {
             <div style={{ maxWidth:1000, margin:"0 auto" }}>
               <p style={{ fontSize:"clamp(24px,4vw,68px)", fontWeight:300, letterSpacing:"-0.03em", color:"#0d0d0b", lineHeight:1.2, fontStyle:"italic", margin:"0 0 28px" }}>
                 {isRo
-                  ? "Nu construim fisiere. Construim produse alaturi de oamenii care le vor folosi."
-                  : "We do not build files. We build products alongside the people who will use them."
+                  ? "Construim branduri care reflectă autentic oamenii și afacerile din spatele lor."
+                  : "We build brands that authentically reflect the people and businesses behind them."
                 }
               </p>
               <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.25)" }}>— M81 Studio</span>
@@ -224,17 +224,17 @@ export default function StudioPage() {
 
             <FadeUp delay={80}>
               <div style={{ display:"flex", flexDirection:"column", gap:20 }}>
-                <p style={{ fontSize:15, lineHeight:1.8, color:"rgba(255,255,255,0.3)", margin:0, fontWeight:300 }}>
+                <p style={{ fontSize:15, lineHeight:1.8, color:"rgba(255,255,255,0.62)", margin:0, fontWeight:400 }}>
                   {isRo
-                    ? "Daca ai un proiect sau o idee, trimite-ne un email sau programeaza un kickoff direct."
-                    : "If you have a project or an idea, send us an email or schedule a kickoff directly."
+                    ? "Dacă ai o idee sau un proiect, hai să vorbim despre el."
+                    : "If you have an idea or a project, let's talk about it."
                   }
                 </p>
                 <Link href={`/${locale}/incepe-un-proiect`} data-cur="Start"
                   style={{ alignSelf:"flex-start", display:"inline-flex", alignItems:"center", gap:10, fontSize:11, fontWeight:900, letterSpacing:"0.18em", textTransform:"uppercase", color:"rgba(255,255,255,0.5)", textDecoration:"none", borderBottom:"1px solid rgba(255,255,255,0.15)", paddingBottom:3, transition:"color .2s, border-color .2s" }}
                   onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.color="#c4f20d";(e.currentTarget as HTMLElement).style.borderColor="#c4f20d";}}
                   onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.color="rgba(255,255,255,0.5)";(e.currentTarget as HTMLElement).style.borderColor="rgba(255,255,255,0.15)";}}>
-                  {isRo ? "Programeaza un kickoff" : "Schedule a kickoff"} {"\u2192"}
+                  {isRo ? "Intr\u0103 \u00een contact" : "Get in touch"} {"\u2192"}
                 </Link>
               </div>
             </FadeUp>
@@ -258,7 +258,7 @@ function PrincipleRowDark({ n, title, text, index }: { n:string; title:string; t
     <div ref={ref} style={{ display:"grid", gridTemplateColumns:"80px 1fr 1.5fr", gap:48, alignItems:"start", borderTop:"1px solid rgba(255,255,255,0.06)", padding:"40px 0", opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(20px)", transition:`opacity .8s ease ${index*80}ms, transform .8s cubic-bezier(.23,1,.32,1) ${index*80}ms` }}>
       <span style={{ fontSize:"clamp(28px,4vw,52px)", fontWeight:900, letterSpacing:"-0.05em", color:"rgba(255,255,255,0.07)", lineHeight:1 }}>{n}</span>
       <h3 style={{ fontSize:"clamp(18px,1.8vw,28px)", fontWeight:800, letterSpacing:"-0.03em", color:"#fff", margin:0, lineHeight:1.1 }}>{title}</h3>
-      <p style={{ fontSize:15, lineHeight:1.8, color:"rgba(255,255,255,0.35)", margin:0, fontWeight:300 }}>{text}</p>
+      <p style={{ fontSize:15, lineHeight:1.8, color:"rgba(255,255,255,0.68)", margin:0, fontWeight:400 }}>{text}</p>
     </div>
   );
 }
