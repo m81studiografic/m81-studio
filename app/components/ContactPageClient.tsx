@@ -20,6 +20,11 @@ const GLOBAL_CSS = `
     --border: rgba(0,0,0,0.07);
     --bg: #ededed;
     --surface: #fff;
+    --page-px: 64px;
+  }
+  @media (max-width: 767px) {
+    :root { --page-px: 24px; }
+    * { cursor: auto !important; }
   }
 `;
 
@@ -125,6 +130,7 @@ function BudgetPills({ value, onChange, options }: { value: string; onChange: (v
 /* ── Contact Form ── */
 function ContactForm({ locale }: ContactPageClientProps) {
   const isRo = locale === "ro";
+  const isMobile = useIsMobile();
   const budgetOptions = getBudgetOptions(isRo);
   const [fields, setFields] = useState({ name:"", email:"", projectType:"", budget:"", message:"" });
   const [focused, setFocused] = useState<string|null>(null);
@@ -171,7 +177,7 @@ function ContactForm({ locale }: ContactPageClientProps) {
 
   return (
     <div style={{ display:"flex", flexDirection:"column", gap:20 }}>
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+      <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:12 }}>
         <div>
           <label style={{ fontSize:10, fontWeight:600, letterSpacing:"0.12em", textTransform:"uppercase", color:"var(--muted)", display:"block", marginBottom:8 }}>{isRo ? "Nume" : "Name"}</label>
           <input type="text" value={fields.name} onChange={set("name")} placeholder={isRo ? "Ion Popescu" : "John Doe"} onFocus={()=>setFocused("name")} onBlur={()=>setFocused(null)} style={inputStyle(focused==="name")}/>
@@ -236,9 +242,22 @@ function MapBlock() {
   );
 }
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 /* ── Page ── */
 export default function ContactPageClient({ locale }: ContactPageClientProps) {
   const [ready, setReady] = useState(false);
+  const isMobile = useIsMobile();
   useEffect(() => { setTimeout(() => setReady(true), 80); }, []);
 
   return (
@@ -264,7 +283,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
 
           {/* titlu — 2 linii, fără lime, fără italic agresiv */}
           <div style={{ borderBottom:"1px solid var(--border)", paddingBottom:56 }}>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, alignItems:"flex-end" }}>
+            <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap:40, alignItems: isMobile ? "start" : "flex-end" }}>
 
               {/* stânga: titlu */}
               <div>
@@ -312,7 +331,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
 
         {/* ════ MAIN — form + info ════ */}
         <section style={{ maxWidth:1200, margin:"0 auto", padding:"0 var(--page-px,64px) 96px" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1.35fr", gap:64, alignItems:"flex-start" }}>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.35fr", gap: isMobile ? 40 : 64, alignItems:"flex-start" }}>
 
             {/* STÂNGA — info + map + social */}
             <div style={{ display:"flex", flexDirection:"column", gap:56 }}>
@@ -374,7 +393,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
                 Întrebări frecvente
               </span>
 
-              <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:48 }}>
+              <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: isMobile ? 32 : 48 }}>
                 {[
                   { q:"Cât durează un proiect?", a:"De obicei 4–12 săptămâni, în funcție de complexitate. Stabilim un timeline clar de la prima întâlnire." },
                   { q:"Lucrați cu startupuri?", a:"Da, absolut. Avem pachete flexibile adaptate bugetelor de startup, cu livrare rapidă și impact maxim." },

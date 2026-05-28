@@ -85,7 +85,7 @@ export default function HomePage() {
           <div className="absolute right-[100px] top-[20%] w-[220px] h-[220px] rounded-full border border-[rgba(196,242,13,0.04)] animate-[floatY_9s_ease-in-out_infinite_3s] pointer-events-none z-10" />
 
           {/* TOP BAR */}
-          <header className="relative z-10 flex justify-between items-center py-8 px-14 border-b border-[rgba(255,255,255,0.06)] opacity-100">
+          <header className="relative z-10 flex justify-between items-center py-8 px-6 md:px-14 border-b border-[rgba(255,255,255,0.06)] opacity-100">
             <span className="text-[10px] font-extrabold tracking-[0.28em] uppercase text-[rgba(255,255,255,0.3)]">
               {locale === "ro" ? "PARTENER CREATIV DIGITAL" : "CREATIVE DIGITAL PARTNER"}
             </span>
@@ -99,20 +99,20 @@ export default function HomePage() {
           </header>
 
           {/* TITLE */}
-          <div className="relative z-10 flex-1 flex flex-col justify-center px-14">
+          <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-14">
             <div className="overflow-hidden leading-[0.88]">
-              <h1 className="font-sans text-[clamp(64px,11vw,168px)] font-black italic tracking-[-0.04em] text-white block">{t("hero1")}</h1>
+              <h1 className="font-sans text-[clamp(40px,11vw,168px)] font-black italic tracking-[-0.04em] text-white block">{t("hero1")}</h1>
             </div>
             <div className="overflow-hidden leading-[0.82]">
-              <h1 className="font-sans text-[clamp(64px,13.5vw,208px)] font-black tracking-[-0.055em] uppercase text-white block">{t("hero2")}</h1>
+              <h1 className="font-sans text-[clamp(40px,13.5vw,208px)] font-black tracking-[-0.055em] uppercase text-white block">{t("hero2")}</h1>
             </div>
             <div className="overflow-hidden leading-[0.82]">
-              <h1 className="font-sans text-[clamp(64px,13.5vw,208px)] font-black tracking-[-0.055em] uppercase text-[var(--lime)] block">{t("hero3")}</h1>
+              <h1 className="font-sans text-[clamp(40px,13.5vw,208px)] font-black tracking-[-0.055em] uppercase text-[var(--lime)] block">{t("hero3")}</h1>
             </div>
           </div>
 
           {/* BOTTOM ROW */}
-          <footer className="relative z-10 flex justify-between items-end px-14 pt-10 pb-12 border-t border-[rgba(255,255,255,0.06)] gap-10 flex-wrap opacity-100">
+          <footer className="relative z-10 flex justify-between items-end px-6 md:px-14 pt-10 pb-12 border-t border-[rgba(255,255,255,0.06)] gap-10 flex-wrap opacity-100">
             <p className="text-[clamp(12px,1.2vw,14px)] font-semibold tracking-[0.12em] uppercase text-[rgba(255,255,255,0.35)] leading-[1.7] max-w-[340px] m-0">
               {t("tagline")}
             </p>

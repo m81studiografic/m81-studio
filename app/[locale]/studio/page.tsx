@@ -10,6 +10,18 @@ const CSS = `
   @keyframes m81-pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.3; transform:scale(1.5); } }
 `;
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 function PrincipleRow({ n, title, text, index }: { n:string; title:string; text:string; index:number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [vis, setVis] = useState(false);
@@ -66,6 +78,7 @@ function ServiceTile({ label, sub, index, dark }: { label:string; sub:string; in
 
 export default function StudioPage() {
   const [ready, setReady] = useState(false);
+  const isMobile = useIsMobile();
   const locale = useLocale();
   const isRo = locale === "ro";
   useEffect(() => { setTimeout(() => setReady(true), 80); }, []);
@@ -101,10 +114,10 @@ export default function StudioPage() {
       <main style={{ fontFamily:"'Manrope','Inter',sans-serif", overflowX:"hidden" }}>
 
         {/* ════ HERO — split 50/50 ════ */}
-        <section style={{ minHeight:"100vh", display:"grid", gridTemplateColumns:"1fr 1fr", position:"relative" }}>
+        <section style={{ minHeight: isMobile ? "auto" : "100vh", display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", position:"relative" }}>
 
           {/* LEFT — dark */}
-          <div style={{ backgroundColor:"#0d0d0b", display:"flex", flexDirection:"column", justifyContent:"space-between", padding:"100px 56px 56px", position:"relative", overflow:"hidden" }}>
+          <div style={{ backgroundColor:"#0d0d0b", display:"flex", flexDirection:"column", justifyContent:"space-between", gap: isMobile ? 48 : 0, padding: isMobile ? "96px 24px 48px" : "100px 56px 56px", position:"relative", overflow:"hidden" }}>
             <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)", backgroundSize:"72px 72px", pointerEvents:"none" }}/>
 
             <div style={{ position:"relative", zIndex:1, opacity:ready?1:0, transition:"opacity .7s ease 200ms" }}>
@@ -146,7 +159,7 @@ export default function StudioPage() {
           </div>
 
           {/* RIGHT — light, service tiles */}
-          <div style={{ backgroundColor:"#ededed", display:"flex", flexDirection:"column", justifyContent:"space-between", padding:"100px 56px 56px" }}>
+          <div style={{ backgroundColor:"#ededed", display:"flex", flexDirection:"column", justifyContent:"space-between", gap: isMobile ? 40 : 0, padding: isMobile ? "48px 24px 56px" : "100px 56px 56px" }}>
             <div style={{ opacity:ready?1:0, transition:"opacity .7s ease 300ms" }}>
               <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(0,0,0,0.25)" }}>
                 {isRo ? "CE FACEM" : "WHAT WE DO"}
@@ -170,12 +183,12 @@ export default function StudioPage() {
             </div>
           </div>
 
-          <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:1, backgroundColor:"rgba(196,242,13,0.1)", pointerEvents:"none" }}/>
+          {!isMobile && <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:1, backgroundColor:"rgba(196,242,13,0.1)", pointerEvents:"none" }}/>}
         </section>
 
         {/* ════ PRINCIPLES — dark bg, contrast cu hero ════ */}
-        <section style={{ backgroundColor:"#0d0d0b", padding:"96px 0" }}>
-          <div style={{ maxWidth:1200, margin:"0 auto", padding:"0 56px" }}>
+        <section style={{ backgroundColor:"#0d0d0b", padding: isMobile ? "72px 0" : "96px 0" }}>
+          <div style={{ maxWidth:1200, margin:"0 auto", padding: isMobile ? "0 24px" : "0 56px" }}>
             <FadeUp>
               <div style={{ display:"flex", alignItems:"center", gap:24, marginBottom:56 }}>
                 <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"#c4f20d" }}>
@@ -186,14 +199,14 @@ export default function StudioPage() {
               </div>
             </FadeUp>
             {principles.map((p, i) => (
-              <PrincipleRowDark key={p.n} n={p.n} title={p.title} text={p.text} index={i} />
+              <PrincipleRowDark key={p.n} n={p.n} title={p.title} text={p.text} index={i} isMobile={isMobile} />
             ))}
             <div style={{ borderTop:"1px solid rgba(255,255,255,0.06)" }}/>
           </div>
         </section>
 
         {/* ════ QUOTE — light, contrast cu dark principles ════ */}
-        <section style={{ backgroundColor:"#ededed", padding:"120px 56px" }}>
+        <section style={{ backgroundColor:"#ededed", padding: isMobile ? "80px 24px" : "120px 56px" }}>
           <FadeUp>
             <div style={{ maxWidth:1000, margin:"0 auto" }}>
               <p style={{ fontSize:"clamp(24px,4vw,68px)", fontWeight:300, letterSpacing:"-0.03em", color:"#0d0d0b", lineHeight:1.2, fontStyle:"italic", margin:"0 0 28px" }}>
@@ -208,8 +221,8 @@ export default function StudioPage() {
         </section>
 
         {/* ════ CTA — dark, contrast cu quote light ════ */}
-        <section style={{ backgroundColor:"#0d0d0b", padding:"96px 56px" }}>
-          <div style={{ maxWidth:1200, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"end" }}>
+        <section style={{ backgroundColor:"#0d0d0b", padding: isMobile ? "72px 24px" : "96px 56px" }}>
+          <div style={{ maxWidth:1200, margin:"0 auto", display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 80, alignItems: isMobile ? "start" : "end" }}>
             <FadeUp>
               <p style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(255,255,255,0.25)", marginBottom:20 }}>
                 {isRo ? "Vorbim?" : "Shall we talk?"}
@@ -246,7 +259,7 @@ export default function StudioPage() {
   );
 }
 
-function PrincipleRowDark({ n, title, text, index }: { n:string; title:string; text:string; index:number }) {
+function PrincipleRowDark({ n, title, text, index, isMobile }: { n:string; title:string; text:string; index:number; isMobile?:boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const [vis, setVis] = useState(false);
   useEffect(() => {
@@ -255,7 +268,7 @@ function PrincipleRowDark({ n, title, text, index }: { n:string; title:string; t
     obs.observe(el); return () => obs.disconnect();
   }, []);
   return (
-    <div ref={ref} style={{ display:"grid", gridTemplateColumns:"80px 1fr 1.5fr", gap:48, alignItems:"start", borderTop:"1px solid rgba(255,255,255,0.06)", padding:"40px 0", opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(20px)", transition:`opacity .8s ease ${index*80}ms, transform .8s cubic-bezier(.23,1,.32,1) ${index*80}ms` }}>
+    <div ref={ref} style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "80px 1fr 1.5fr", gap: isMobile ? 12 : 48, alignItems:"start", borderTop:"1px solid rgba(255,255,255,0.06)", padding: isMobile ? "28px 0" : "40px 0", opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(20px)", transition:`opacity .8s ease ${index*80}ms, transform .8s cubic-bezier(.23,1,.32,1) ${index*80}ms` }}>
       <span style={{ fontSize:"clamp(28px,4vw,52px)", fontWeight:900, letterSpacing:"-0.05em", color:"rgba(255,255,255,0.07)", lineHeight:1 }}>{n}</span>
       <h3 style={{ fontSize:"clamp(18px,1.8vw,28px)", fontWeight:800, letterSpacing:"-0.03em", color:"#fff", margin:0, lineHeight:1.1 }}>{title}</h3>
       <p style={{ fontSize:15, lineHeight:1.8, color:"rgba(255,255,255,0.68)", margin:0, fontWeight:400 }}>{text}</p>
