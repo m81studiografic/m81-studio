@@ -8,7 +8,20 @@ const CSS = `
   *, *::before, *::after { box-sizing: border-box; cursor: none !important; }
   @keyframes m81-pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(1.5);} }
   @keyframes m81-ticker { 0%{transform:translateX(0);}100%{transform:translateX(-50%);} }
+  @media (max-width: 767px) { *, *::before, *::after { cursor: auto !important; } }
 `;
+
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
 
 function Cursor() {
   const dot  = useRef<HTMLDivElement>(null);
@@ -76,11 +89,12 @@ function Ticker({ items }: { items: string[] }) {
 }
 
 /* ── ServiceRow — expandabil la hover ── */
-function ServiceRow({ number, title, description, tags, result, index, ready }: {
+function ServiceRow({ number, title, description, tags, result, index, ready, isMobile }: {
   number: string; title: string; description: string;
-  tags: string[]; result: string; index: number; ready: boolean;
+  tags: string[]; result: string; index: number; ready: boolean; isMobile?: boolean;
 }) {
   const [hov, setHov] = useState(false);
+  const open = hov || isMobile;
 
   return (
     <div
@@ -96,24 +110,24 @@ function ServiceRow({ number, title, description, tags, result, index, ready }: 
       }}
     >
       {/* riga principala */}
-      <div style={{ display:"grid", gridTemplateColumns:"64px 1fr auto", gap:24, alignItems:"center", padding:"28px 0" }}>
-        <span style={{ fontSize:10, fontWeight:600, letterSpacing:"0.18em", color:hov?"#0d0d0b":"rgba(0,0,0,0.25)", textTransform:"uppercase", transition:"color .3s" }}>
+      <div style={{ display:"grid", gridTemplateColumns: isMobile ? "40px 1fr auto" : "64px 1fr auto", gap:isMobile?16:24, alignItems:"center", padding:"28px 0" }}>
+        <span style={{ fontSize:10, fontWeight:600, letterSpacing:"0.18em", color:open?"#0d0d0b":"rgba(0,0,0,0.25)", textTransform:"uppercase", transition:"color .3s" }}>
           {number}
         </span>
         <h2 style={{
           fontSize:"clamp(20px,2.2vw,32px)",
-          fontWeight: hov ? 700 : 500,
+          fontWeight: open ? 700 : 500,
           letterSpacing:"-0.03em",
-          color: hov ? "#0d0d0b" : "rgba(0,0,0,0.65)",
+          color: open ? "#0d0d0b" : "rgba(0,0,0,0.65)",
           margin:0, lineHeight:1.1,
           transition:"color .3s, font-weight .2s",
         }}>{title}</h2>
         <div style={{
           width:32, height:32, borderRadius:"50%",
-          border:`1px solid ${hov?"#0d0d0b":"rgba(0,0,0,0.15)"}`,
+          border:`1px solid ${open?"#0d0d0b":"rgba(0,0,0,0.15)"}`,
           display:"flex", alignItems:"center", justifyContent:"center",
-          fontSize:13, color:hov?"#0d0d0b":"rgba(0,0,0,0.25)",
-          transform: hov ? "rotate(45deg)" : "rotate(0deg)",
+          fontSize:13, color:open?"#0d0d0b":"rgba(0,0,0,0.25)",
+          transform: open ? "rotate(45deg)" : "rotate(0deg)",
           transition:"border-color .3s, color .3s, transform .4s cubic-bezier(.23,1,.32,1)",
           flexShrink:0,
         }}>↗</div>
@@ -122,13 +136,13 @@ function ServiceRow({ number, title, description, tags, result, index, ready }: 
       {/* detali expandabile */}
       <div style={{
         display:"grid",
-        gridTemplateRows: hov ? "1fr" : "0fr",
+        gridTemplateRows: open ? "1fr" : "0fr",
         transition:"grid-template-rows .4s cubic-bezier(.23,1,.32,1)",
         overflow:"hidden",
       }}>
         <div style={{ minHeight:0 }}>
-          <div style={{ display:"grid", gridTemplateColumns:"64px 1fr 1fr", gap:24, paddingBottom:32 }}>
-            <div/>
+          <div style={{ display:"grid", gridTemplateColumns: isMobile ? "1fr" : "64px 1fr 1fr", gap:isMobile?16:24, paddingBottom:32, paddingLeft: isMobile ? 56 : 0 }}>
+            {!isMobile && <div/>}
             <div>
               <p style={{ fontSize:14, fontWeight:300, lineHeight:1.85, color:"rgba(0,0,0,0.5)", margin:"0 0 20px", maxWidth:420 }}>
                 {description}
@@ -152,17 +166,18 @@ function ServiceRow({ number, title, description, tags, result, index, ready }: 
 
 export default function ServiciiPage() {
   const [ready, setReady] = useState(false);
+  const isMobile = useIsMobile();
   const locale = useLocale();
   const isRo = locale === "ro";
   useEffect(() => { setTimeout(() => setReady(true), 80); }, []);
 
   const services = isRo ? [
-    { number:"01", title:"Strategie de Brand", description:"Înainte de design, înțelegem afacerea, publicul și direcția brandului pentru a construi o identitate clară și autentică.", tags:["Analiza business","Analiza competitie","Public tinta","Pozitionare","Tone of voice"], result:"direcție clară pentru brand" },
-    { number:"02", title:"Identitate Vizuala", description:"Creăm identități vizuale care reprezintă brandul coerent în online, produse și comunicare.", tags:["Logo design","Tipografie","Paleta cromatica","Elemente grafice","Brand guidelines"], result:"identitate vizuală completă" },
+    { number:"01", title:"Strategie de Brand", description:"Înainte de design, înțelegem afacerea, publicul și direcția brandului pentru a construi o identitate clară și autentică.", tags:["Analiză business","Analiză competiție","Public țintă","Poziționare","Tone of voice"], result:"direcție clară pentru brand" },
+    { number:"02", title:"Identitate Vizuală", description:"Creăm identități vizuale care reprezintă brandul coerent în online, produse și comunicare.", tags:["Logo design","Tipografie","Paletă cromatică","Elemente grafice","Brand guidelines"], result:"identitate vizuală completă" },
     { number:"03", title:"Packaging & Product Design", description:"Proiectăm ambalaje și produse care reflectă identitatea brandului și creează o experiență coerentă.", tags:["Design ambalaje","Etichete produse","Design cutii","Mockups produs","Design retail"], result:"produse construite coerent" },
     { number:"04", title:"Design Digital (UI/UX)", description:"Construim experiențe digitale ușor de folosit și aliniate cu identitatea brandului.", tags:["UX research","Wireframes","UI design","Prototipuri","Design system"], result:"design complet de website sau aplicație" },
     { number:"05", title:"Dezvoltare Website", description:"Dezvoltăm website-uri rapide, stabile și construite pentru experiența utilizatorului.", tags:["Front-end dev","Integrare CMS","Optimizare","SEO tehnic","Responsive"], result:"website construit complet" },
-    { number:"06", title:"Suport & Mentenanta", description:"Un brand evoluează în timp. Oferim suport pentru dezvoltare, actualizare și optimizare continuă.", tags:["Mentenanta website","Actualizari design","Optimizari","Noi functionalitati"], result:"brand construit pentru evoluție" },
+    { number:"06", title:"Suport & Mentenanță", description:"Un brand evoluează în timp. Oferim suport pentru dezvoltare, actualizare și optimizare continuă.", tags:["Mentenanță website","Actualizări design","Optimizări","Noi funcționalități"], result:"brand construit pentru evoluție" },
   ] : [
     { number:"01", title:"Brand Strategy", description:"Before design, we understand the business, the audience and the brand direction to build a clear and authentic identity.", tags:["Business analysis","Competition analysis","Target audience","Positioning","Tone of voice"], result:"clear direction for the brand" },
     { number:"02", title:"Visual Identity", description:"We create visual identities that represent the brand coherently across online, products and communication.", tags:["Logo design","Typography","Color palette","Graphic elements","Brand guidelines"], result:"complete visual identity" },
@@ -173,7 +188,7 @@ export default function ServiciiPage() {
   ];
 
   const tickerItems = isRo
-    ? ["Identitate Vizuala","Packaging","UI/UX Design","Brand Strategy","Web Development","Art Direction","Design System","Branding"]
+    ? ["Identitate Vizuală","Packaging","UI/UX Design","Brand Strategy","Web Development","Art Direction","Design System","Branding"]
     : ["Visual Identity","Packaging","UI/UX Design","Brand Strategy","Web Development","Art Direction","Design System","Branding"];
 
   return (
@@ -187,7 +202,7 @@ export default function ServiciiPage() {
         <section style={{ minHeight:"100vh", display:"flex", flexDirection:"column" }}>
 
           {/* top bar */}
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"100px 56px 40px", borderBottom:"1px solid rgba(0,0,0,0.07)", opacity:ready?1:0, transition:"opacity .7s ease 150ms" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", gap:12, flexWrap:"wrap", padding: isMobile ? "96px 24px 24px" : "100px 56px 40px", borderBottom:"1px solid rgba(0,0,0,0.07)", opacity:ready?1:0, transition:"opacity .7s ease 150ms" }}>
             <span style={{ fontSize:10, fontWeight:600, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(0,0,0,0.28)" }}>
               {isRo ? "CE FACEM" : "WHAT WE DO"}
             </span>
@@ -201,10 +216,10 @@ export default function ServiciiPage() {
           </div>
 
           {/* split */}
-          <div style={{ flex:1, display:"grid", gridTemplateColumns:"1fr 1.4fr" }}>
+          <div style={{ flex:1, display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr" }}>
 
             {/* LEFT — titlu + descriere + cta */}
-            <div style={{ display:"flex", flexDirection:"column", justifyContent:"space-between", padding:"56px 56px 56px", borderRight:"1px solid rgba(0,0,0,0.07)" }}>
+            <div style={{ display:"flex", flexDirection:"column", justifyContent:"space-between", gap: isMobile ? 40 : 0, padding: isMobile ? "40px 24px" : "56px 56px 56px", borderRight: isMobile ? "none" : "1px solid rgba(0,0,0,0.07)", borderBottom: isMobile ? "1px solid rgba(0,0,0,0.07)" : "none" }}>
               <div>
                 {(isRo ? ["Servicii", "care", "construiesc."] : ["Services", "that", "build."]).map((line, i) => (
                   <div key={i} style={{ overflow:"hidden", lineHeight:.9 }}>
@@ -233,20 +248,22 @@ export default function ServiciiPage() {
                   style={{ display:"inline-flex", alignItems:"center", gap:12, backgroundColor:"#0d0d0b", color:"#fff", padding:"14px 32px", borderRadius:999, fontSize:12, fontWeight:700, textDecoration:"none", letterSpacing:"0.06em", textTransform:"uppercase", transition:"background-color .25s" }}
                   onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.backgroundColor="#c4f20d";(e.currentTarget as HTMLElement).style.color="#000";}}
                   onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.backgroundColor="#0d0d0b";(e.currentTarget as HTMLElement).style.color="#fff";}}>
-                  {isRo ? "Incepe un proiect" : "Start a project"} →
+                  {isRo ? "Începe un proiect" : "Start a project"} →
                 </Link>
               </div>
             </div>
 
             {/* RIGHT — lista expandabila */}
-            <div style={{ padding:"56px 56px 56px 48px", display:"flex", flexDirection:"column", justifyContent:"center" }}>
-              <div style={{ opacity:ready?1:0, transition:"opacity .5s ease 200ms", marginBottom:8 }}>
-                <span style={{ fontSize:9, fontWeight:600, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.22)" }}>
-                  {isRo ? "Hover pentru detalii" : "Hover for details"}
-                </span>
-              </div>
+            <div style={{ padding: isMobile ? "40px 24px 48px" : "56px 56px 56px 48px", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+              {!isMobile && (
+                <div style={{ opacity:ready?1:0, transition:"opacity .5s ease 200ms", marginBottom:8 }}>
+                  <span style={{ fontSize:9, fontWeight:600, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(0,0,0,0.22)" }}>
+                    {isRo ? "Hover pentru detalii" : "Hover for details"}
+                  </span>
+                </div>
+              )}
               {services.map((s, i) => (
-                <ServiceRow key={s.number} {...s} index={i} ready={ready}/>
+                <ServiceRow key={s.number} {...s} index={i} ready={ready} isMobile={isMobile}/>
               ))}
               <div style={{ borderTop:"1px solid rgba(0,0,0,0.07)" }}/>
             </div>
@@ -257,12 +274,12 @@ export default function ServiciiPage() {
         <Ticker items={tickerItems}/>
 
         {/* ════ CTA ════ */}
-        <section style={{ backgroundColor:"#0d0d0b", padding:"96px 56px" }}>
+        <section style={{ backgroundColor:"#0d0d0b", padding: isMobile ? "72px 24px" : "96px 56px" }}>
           <FadeUp>
-            <div style={{ maxWidth:1100, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:64, alignItems:"center" }}>
+            <div style={{ maxWidth:1100, margin:"0 auto", display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 36 : 64, alignItems: isMobile ? "start" : "center" }}>
               <div>
                 <p style={{ fontSize:10, fontWeight:600, letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(255,255,255,0.28)", marginBottom:20 }}>
-                  {isRo ? "Gata sa incepi?" : "Ready to start?"}
+                  {isRo ? "Gata să începi?" : "Ready to start?"}
                 </p>
                 <h2 style={{ fontSize:"clamp(28px,4vw,56px)", fontWeight:700, letterSpacing:"-0.04em", color:"#fff", lineHeight:1.05, margin:0 }}>
                   {isRo ? <>Hai sa construim<br/>ceva impreuna.</> : <>Let&apos;s build<br/>something together.</>}

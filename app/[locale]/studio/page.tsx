@@ -192,7 +192,7 @@ export default function StudioPage() {
             <FadeUp>
               <div style={{ display:"flex", alignItems:"center", gap:24, marginBottom:56 }}>
                 <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"#c4f20d" }}>
-                  {isRo ? "Cum gandim" : "How we think"}
+                  {isRo ? "Cum gândim" : "How we think"}
                 </span>
                 <div style={{ flex:1, height:1, backgroundColor:"rgba(255,255,255,0.06)" }}/>
                 <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.16em", textTransform:"uppercase", color:"rgba(255,255,255,0.15)" }}>01 — 03</span>

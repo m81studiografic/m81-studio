@@ -8,7 +8,20 @@ const CSS = `
   *, *::before, *::after { box-sizing: border-box; cursor: none !important; }
   @keyframes m81-pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.3; transform:scale(1.5); } }
   @keyframes m81-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+  @media (max-width: 767px) { *, *::before, *::after { cursor: auto !important; } }
 `;
+
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
 
 /* ── Cursor ── */
 function Cursor() {
@@ -63,12 +76,12 @@ function FadeUp({ children, delay=0 }: { children: ReactNode; delay?: number }) 
 }
 
 /* ── Step row ── */
-function StepRow({ number, phase, title, description, activities, activitiesLabel, last, active, dimmed, onEnter, onLeave, vis }: {
+function StepRow({ number, phase, title, description, activities, activitiesLabel, last, active, dimmed, onEnter, onLeave, vis, isMobile }: {
   number:string; phase:string; title:string; description:string;
   activities:string[]; activitiesLabel:string; last:boolean;
   active:boolean; dimmed:boolean;
   onEnter:()=>void; onLeave:()=>void;
-  vis:boolean;
+  vis:boolean; isMobile?:boolean;
 }) {
   return (
     <div
@@ -77,7 +90,7 @@ function StepRow({ number, phase, title, description, activities, activitiesLabe
       style={{
         position:"relative",
         borderTop:"1px solid rgba(255,255,255,0.06)",
-        padding:"72px 0",
+        padding: isMobile ? "40px 0" : "72px 0",
         opacity: !vis ? 0 : dimmed ? 0.12 : 1,
         transform: vis ? "translateY(0)" : "translateY(40px)",
         transition:"opacity .4s ease, transform .9s cubic-bezier(.23,1,.32,1)",
@@ -95,7 +108,7 @@ function StepRow({ number, phase, title, description, activities, activitiesLabe
         {number}
       </span>
 
-      <div style={{ position:"relative", zIndex:1, display:"grid", gridTemplateColumns:"200px 1fr 1fr", gap:48, alignItems:"start" }}>
+      <div style={{ position:"relative", zIndex:1, display:"grid", gridTemplateColumns: isMobile ? "1fr" : "200px 1fr 1fr", gap: isMobile ? 24 : 48, alignItems:"start" }}>
 
         {/* left: number + phase */}
         <div>
@@ -172,6 +185,7 @@ export default function ProcesPage() {
   const [ready, setReady] = useState(false);
   const [visMap, setVisMap] = useState<boolean[]>(Array(8).fill(false));
   const [activeStep, setActiveStep] = useState<number|null>(null);
+  const isMobile = useIsMobile();
   const locale = useLocale();
   const tc = useTranslations("cta");
   const isRo = locale === "ro";
@@ -227,7 +241,7 @@ export default function ProcesPage() {
           <div style={{ position:"absolute", right:80, top:"15%", width:480, height:480, borderRadius:"50%", border:"1px solid rgba(196,242,13,0.04)", animation:"m81-float 12s ease-in-out infinite", pointerEvents:"none" }}/>
           <div style={{ position:"absolute", right:160, top:"25%", width:280, height:280, borderRadius:"50%", border:"1px solid rgba(196,242,13,0.06)", animation:"m81-float 12s ease-in-out infinite 4s", pointerEvents:"none" }}/>
 
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"100px 64px 40px", borderBottom:"1px solid rgba(255,255,255,0.05)", opacity:ready?1:0, transition:"opacity .7s ease 150ms" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", gap:12, flexWrap:"wrap", padding: isMobile ? "96px 24px 24px" : "100px 64px 40px", borderBottom:"1px solid rgba(255,255,255,0.05)", opacity:ready?1:0, transition:"opacity .7s ease 150ms" }}>
             <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(255,255,255,0.22)" }}>{isRo?"CUM LUCRAM":"HOW WE WORK"}</span>
             <div style={{ display:"flex", alignItems:"center", gap:8 }}>
               <span style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#c4f20d", display:"inline-block", animation:"m81-pulse 2s ease-in-out infinite" }}/>
@@ -236,7 +250,7 @@ export default function ProcesPage() {
             <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.26em", textTransform:"uppercase", color:"rgba(255,255,255,0.22)" }}>M81 STUDIO</span>
           </div>
 
-          <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center", padding:"0 64px", position:"relative", zIndex:1 }}>
+          <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center", padding: isMobile ? "48px 24px" : "0 64px", position:"relative", zIndex:1 }}>
             {(isRo?["Procesul","nostru,","simplu."]:["Our","process,","simple."]).map((line,i) => (
               <div key={i} style={{ overflow:"hidden", lineHeight:.9 }}>
                 <h1 style={{ fontSize:"clamp(56px,11vw,176px)", fontWeight:900, letterSpacing:"-0.055em", margin:0, color:i===2?"#c4f20d":i===1?"rgba(255,255,255,0.18)":"#fff", fontStyle:i===1?"italic":"normal", transform:ready?"translateY(0)":"translateY(108%)", opacity:ready?1:0, transition:`transform 1.2s cubic-bezier(.16,1,.3,1) ${80+i*160}ms, opacity .6s ease ${80+i*160}ms` }}>{line}</h1>
@@ -244,7 +258,7 @@ export default function ProcesPage() {
             ))}
           </div>
 
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", padding:"36px 64px 52px", borderTop:"1px solid rgba(255,255,255,0.05)", opacity:ready?1:0, transition:"opacity 1s ease 700ms", flexWrap:"wrap", gap:32 }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", padding: isMobile ? "32px 24px 40px" : "36px 64px 52px", borderTop:"1px solid rgba(255,255,255,0.05)", opacity:ready?1:0, transition:"opacity 1s ease 700ms", flexWrap:"wrap", gap:32 }}>
             <p style={{ fontSize:14, fontWeight:300, color:"rgba(255,255,255,0.32)", maxWidth:400, lineHeight:1.8, margin:0 }}>
               {isRo?"Construim fiecare proiect printr-un proces clar, colaborativ \u0219i atent \u2014 de la idee p\u00e2n\u0103 la lansare.":"We build every project through a clear, collaborative and considered process \u2014 from idea to launch."}
             </p>
@@ -262,7 +276,7 @@ export default function ProcesPage() {
         </section>
 
         {/* ════ STEPS ════ */}
-        <section style={{ maxWidth:1200, margin:"0 auto", padding:"40px 64px 80px" }}>
+        <section style={{ maxWidth:1200, margin:"0 auto", padding: isMobile ? "24px 24px 64px" : "40px 64px 80px" }}>
           <FadeUp>
             <div style={{ display:"flex", alignItems:"center", gap:20, marginBottom:0 }}>
               <span style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(255,255,255,0.22)" }}>{isRo?"Etapele colaborarii":"Collaboration stages"}</span>
@@ -272,22 +286,25 @@ export default function ProcesPage() {
           </FadeUp>
 
           {/* hint text */}
-          <p style={{ fontSize:12, fontWeight:400, color:"rgba(255,255,255,0.2)", margin:"24px 0 0", letterSpacing:"0.02em" }}>
-            {isRo ? "Trece cu mouse-ul peste o etapa pentru detalii." : "Hover over a stage for details."}
-          </p>
+          {!isMobile && (
+            <p style={{ fontSize:12, fontWeight:400, color:"rgba(255,255,255,0.2)", margin:"24px 0 0", letterSpacing:"0.02em" }}>
+              {isRo ? "Trece cu mouse-ul peste o etapă pentru detalii." : "Hover over a stage for details."}
+            </p>
+          )}
 
           <div>
             {steps.map((step, i) => (
               <div key={step.number} ref={el => { rowRefs.current[i] = el; }}>
                 <StepRow
                   {...step}
-                  activitiesLabel={isRo?"Activitati":"Activities"}
+                  activitiesLabel={isRo?"Activități":"Activities"}
                   last={i === steps.length - 1}
                   active={activeStep === i}
                   dimmed={activeStep !== null && activeStep !== i}
                   onEnter={() => setActiveStep(i)}
                   onLeave={() => setActiveStep(null)}
                   vis={visMap[i]}
+                  isMobile={isMobile}
                 />
               </div>
             ))}
@@ -295,8 +312,8 @@ export default function ProcesPage() {
         </section>
 
         {/* ════ LIGHT INTERLUDE ════ */}
-        <section style={{ backgroundColor:"#ededed", padding:"80px 64px" }}>
-          <div style={{ maxWidth:1200, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"center" }}>
+        <section style={{ backgroundColor:"#ededed", padding: isMobile ? "64px 24px" : "80px 64px" }}>
+          <div style={{ maxWidth:1200, margin:"0 auto", display:"grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 80, alignItems:"center" }}>
             <FadeUp>
               <h2 style={{ fontSize:"clamp(32px,4vw,64px)", fontWeight:900, letterSpacing:"-0.045em", color:"#0d0d0b", lineHeight:.95, margin:0 }}>
                 {isRo
@@ -322,7 +339,7 @@ export default function ProcesPage() {
         </section>
 
         {/* ════ CTA ════ */}
-        <section style={{ backgroundColor:"#0d0d0b", padding:"120px 64px" }}>
+        <section style={{ backgroundColor:"#0d0d0b", padding: isMobile ? "80px 24px" : "120px 64px" }}>
           <div style={{ maxWidth:1200, margin:"0 auto" }}>
             <FadeUp>
               <p style={{ fontSize:10, fontWeight:800, letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(255,255,255,0.22)", marginBottom:32 }}>{tc("ready")}</p>
