@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { HeroBadge, FadeUp, CtaSplit } from "@/app/components/m81-components";
+import { HeroBadge, FadeUp } from "@/app/components/m81-components";
 import { urlFor } from "@/sanity/lib/image";
 import {
   type Locale,
@@ -33,10 +33,8 @@ const T = {
     caseLabel: "Studiu de caz selectat",
     caseView: "Vezi studiul complet",
     archiveLabel: "Arhivă",
-    ctaBadge: "Gata să începem?",
-    ctaTitle: "Hai să construim<br/>ceva împreună.",
-    ctaText: "Spune-ne despre proiectul tău și revenim în 24 de ore.",
-    ctaBtn: "Începe un proiect →",
+    helpText: "Ai nevoie de ajutor cu brandul tău?",
+    helpLink: "Hai să vorbim →",
     empty: "Încă nu am publicat articole. Revino curând.",
   },
   en: {
@@ -57,8 +55,8 @@ const T = {
     archiveLabel: "Archive",
     ctaBadge: "Ready to start?",
     ctaTitle: "Let's build<br/>something together.",
-    ctaText: "Tell us about your project and we'll get back within 24 hours.",
-    ctaBtn: "Start a project →",
+    helpText: "Need a hand with your brand?",
+    helpLink: "Let's talk →",
     empty: "We haven't published any articles yet. Check back soon.",
   },
 } as const;
@@ -288,15 +286,20 @@ export default function JurnalIndex({
             </section>
           )}
 
-          {/* CTA */}
-          <section className="pb-[clamp(64px,9vw,128px)]">
-            <CtaSplit
-              badge={t.ctaBadge}
-              title={t.ctaTitle}
-              text={t.ctaText}
-              btnLabel={t.ctaBtn}
-              btnHref={`/${locale}/incepe-un-proiect`}
-            />
+          {/* CTA discret — ton editorial, nu bannerul de pe site */}
+          <section className="pt-[clamp(40px,6vw,72px)] pb-[clamp(64px,9vw,128px)] border-t border-[rgba(13,13,11,0.1)]">
+            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
+              <p className="text-[clamp(15px,1.4vw,18px)] font-light text-[rgba(13,13,11,0.6)] m-0">
+                {t.helpText}
+              </p>
+              <Link
+                href={`/${locale}/incepe-un-proiect`}
+                data-cur={locale === "ro" ? "Scrie-ne" : "Reach out"}
+                className="text-[clamp(15px,1.4vw,18px)] font-semibold text-[var(--black)] no-underline border-b border-[var(--black)] pb-0.5 hover:border-[var(--lime)] transition-colors w-fit"
+              >
+                {t.helpLink}
+              </Link>
+            </div>
           </section>
         </div>
       </main>
