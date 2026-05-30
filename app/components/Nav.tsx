@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/servicii", key: "servicii" },
   { href: "/proces", key: "proces" },
   { href: "/studio", key: "studio" },
-  { href: "/blog", key: "blog" },
+  { href: "/jurnal", key: "jurnal" },
 ];
 
 function LangSwitch() {
