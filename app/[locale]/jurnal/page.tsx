@@ -13,7 +13,11 @@ export const revalidate = 60; // reîmprospătare la 60s (articole zilnice)
 
 async function getArticles(): Promise<ArticleDoc[]> {
   try {
-    return await client.fetch(allArticlesQuery);
+    return await client.fetch(
+      allArticlesQuery,
+      {},
+      { next: { revalidate: 60 } },
+    );
   } catch {
     return [];
   }

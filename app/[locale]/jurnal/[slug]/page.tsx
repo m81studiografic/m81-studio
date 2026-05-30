@@ -21,15 +21,26 @@ export const revalidate = 60; // reîmprospătare la 60s (articole zilnice)
 
 export async function generateStaticParams() {
   try {
-    const slugs: string[] = await client.fetch(allSlugsQuery);
-    return slugs.map((slug) => ({ slug }));
+    const slugs: string[] = await client.fetch(
+      allSlugsQuery,
+      {},
+      { next: { revalidate: 60 } },
+    );
+    const locales = ["ro", "en"];
+    return slugs.flatMap((slug) =>
+      locales.map((locale) => ({ locale, slug })),
+    );
   } catch {
     return [];
   }
 }
 
 async function getArticle(slug: string): Promise<ArticleDoc | null> {
-  return client.fetch(articleBySlugQuery, { slug });
+  return client.fetch(
+    articleBySlugQuery,
+    { slug },
+    { next: { revalidate: 60 } },
+  );
 }
 
 export async function generateMetadata({
