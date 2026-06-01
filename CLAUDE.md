@@ -4,9 +4,13 @@
 
 1. **Fără autor / scriitor.** Nu se afișează niciodată numele autorului sau al scriitorului, nicăieri, chiar dacă apare în codul mockup-ului — se scoate. Autorul e implicit M81.
 
-2. **Imagini cu influențe românești / pentru publicul român.** Articolele se adresează publicului român. Imaginile NU trebuie să conțină text în limba engleză (sau altă limbă străină) vizibil și NU trebuie să afișeze prețuri în valută străină ($, €). Se preferă imagini cu senzație românească/locală (ex: piață, produse locale, lei/RON) sau imagini neutre fără text străin vizibil. Înainte de a folosi o imagine, se inspectează vizual (se descarcă și se deschide) pentru text/valută străină.
+2. **Imagini DOAR din lumea branding / business / produse / servicii.** Fiecare imagine (copertă și corp) trebuie să arate clar branding, afaceri, produse sau servicii. INTERZIS: metafore din natură (frunze, plante, răsaduri, peisaje), instrumente muzicale, sport sau orice subiect care nu ține de business/branding. Coperta trebuie să reflecte CLAR subiectul articolului (ex: articol despre startupuri → echipă de startup / fondatori / lansare de afacere). „Creșterea" se ilustrează în context de business (scalare, sistem de brand aplicat, expansiune), NU cu plante.
 
-3. **Imagini landscape.** Imaginile din corp și coperțile trebuie să fie landscape (lățime > înălțime). Scripturile de upload au un guard care respinge automat imaginile portret.
+3. **Imagini cu influențe românești / pentru publicul român.** Articolele se adresează publicului român. Imaginile NU trebuie să conțină text în limba engleză (sau altă limbă străină) vizibil și NU trebuie să afișeze prețuri în valută străină ($, €). Se preferă imagini cu senzație românească/locală (ex: piață, produse locale, lei/RON) sau imagini neutre fără text străin vizibil.
+
+4. **Verificare vizuală obligatorie.** Înainte de a folosi orice imagine, se descarcă și se deschide efectiv (nu se alege doar după ID/descriere), ca să se confirme că respectă regulile 2 și 3.
+
+5. **Imagini landscape.** Imaginile din corp și coperțile trebuie să fie landscape (lățime > înălțime). Scripturile de upload au un guard care respinge automat imaginile portret.
 
 ## Context tehnic
 
