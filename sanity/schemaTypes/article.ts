@@ -110,13 +110,13 @@ export const article = defineType({
     }),
     defineField({
       name: "caseTimeline",
-      title: "Durată / timeline (ex: 18 luni)",
+      title: "Evaluare (ex: 2026)",
       type: "string",
       group: "meta",
     }),
     defineField({
       name: "caseServices",
-      title: "Servicii (skin Design critique)",
+      title: "Dimensiuni analizate (skin Design critique)",
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },

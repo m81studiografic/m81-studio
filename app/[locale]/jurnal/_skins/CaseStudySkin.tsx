@@ -23,10 +23,10 @@ export default function CaseStudySkin({
   const isRo = locale === "ro";
   const cur = isRo ? "Citește" : "Read";
   const back = isRo ? "Înapoi la Jurnal" : "Back to Jurnal";
-  const briefLabel = isRo ? "Proiect summar" : "Project brief";
+  const briefLabel = isRo ? "Sumar analiză" : "Analysis summary";
   const clientLabel = isRo ? "Subiect analizat" : "Subject";
-  const timelineLabel = isRo ? "Durată" : "Timeline";
-  const servicesLabel = isRo ? "Servicii" : "Services";
+  const timelineLabel = isRo ? "Evaluare" : "Reviewed";
+  const servicesLabel = isRo ? "Dimensiuni analizate" : "Dimensions";
 
   return (
     <>
