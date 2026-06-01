@@ -10,6 +10,13 @@ export const CATEGORIES = [
   { title: "Case Study", value: "case" },
 ] as const;
 
+/* Subcategorii (industrii) pentru Industry Research.
+   Clasificare INTERNĂ: numele nu se afișează încă pe site —
+   îl activăm când avem research pe mai multe industrii. */
+export const SUBCATEGORIES = [
+  { title: "Legal (Avocatură)", value: "legal" },
+] as const;
+
 export const article = defineType({
   name: "article",
   title: "Articol",
@@ -29,6 +36,16 @@ export const article = defineType({
       group: "meta",
       options: { list: [...CATEGORIES], layout: "radio" },
       validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "subcategory",
+      title: "Subcategorie / industrie (doar pt. Industry Research)",
+      description:
+        "Clasificare internă pe industrie. Numele NU se afișează încă pe site — îl activăm când avem research pe mai multe industrii. Articolul rămâne normal vizibil în Research.",
+      type: "string",
+      group: "meta",
+      options: { list: [...SUBCATEGORIES], layout: "radio" },
+      hidden: ({ document }) => document?.category !== "research",
     }),
     defineField({
       name: "slug",
