@@ -24,7 +24,7 @@ export default function CaseStudySkin({
   const cur = isRo ? "Citește" : "Read";
   const back = isRo ? "Înapoi la Jurnal" : "Back to Jurnal";
   const briefLabel = isRo ? "Proiect summar" : "Project brief";
-  const clientLabel = isRo ? "Client" : "Client";
+  const clientLabel = isRo ? "Subiect analizat" : "Subject";
   const timelineLabel = isRo ? "Durată" : "Timeline";
   const servicesLabel = isRo ? "Servicii" : "Services";
 

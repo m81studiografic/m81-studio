@@ -104,7 +104,7 @@ export const article = defineType({
     /* ── Câmpuri Design critique ── */
     defineField({
       name: "caseClient",
-      title: "Client (skin Design critique)",
+      title: "Subiect analizat (skin Design critique)",
       type: "string",
       group: "meta",
     }),
