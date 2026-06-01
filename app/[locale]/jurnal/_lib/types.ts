@@ -82,7 +82,7 @@ const CATEGORY_LABELS: Record<Category, string> = {
   technology: "Technology & Experience",
   research: "Industry Research",
   strategic: "Strategic Insights",
-  case: "Case Study",
+  case: "Design critique",
 };
 
 export function categoryLabel(c: Category): string {

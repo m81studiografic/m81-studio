@@ -7,7 +7,7 @@ export const CATEGORIES = [
   { title: "Technology & Experience", value: "technology" },
   { title: "Industry Research", value: "research" },
   { title: "Strategic Insights", value: "strategic" },
-  { title: "Case Study", value: "case" },
+  { title: "Design critique", value: "case" },
 ] as const;
 
 /* Subcategorii (industrii) pentru Industry Research.
@@ -101,10 +101,10 @@ export const article = defineType({
       group: "meta",
     }),
 
-    /* ── Câmpuri Case Study ── */
+    /* ── Câmpuri Design critique ── */
     defineField({
       name: "caseClient",
-      title: "Client (skin Case Study)",
+      title: "Client (skin Design critique)",
       type: "string",
       group: "meta",
     }),
@@ -116,7 +116,7 @@ export const article = defineType({
     }),
     defineField({
       name: "caseServices",
-      title: "Servicii (skin Case Study)",
+      title: "Servicii (skin Design critique)",
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },
@@ -124,7 +124,7 @@ export const article = defineType({
     }),
     defineField({
       name: "metrics",
-      title: "Metrici de impact (skin Case Study)",
+      title: "Metrici de impact (skin Design critique)",
       type: "array",
       group: "meta",
       of: [
@@ -180,7 +180,7 @@ export const article = defineType({
     }),
     defineField({
       name: "testimonialRo",
-      title: "Testimonial (skin Case Study)",
+      title: "Testimonial (skin Design critique)",
       type: "text",
       rows: 3,
       group: "ro",
@@ -221,7 +221,7 @@ export const article = defineType({
     }),
     defineField({
       name: "testimonialEn",
-      title: "Testimonial (Case Study skin)",
+      title: "Testimonial (Design critique skin)",
       type: "text",
       rows: 3,
       group: "en",

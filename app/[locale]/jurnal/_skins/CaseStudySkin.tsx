@@ -12,7 +12,7 @@ import {
   categoryLabel,
 } from "../_lib/types";
 
-/* SKIN: Case Study — hero full-bleed, brief de proiect, metrici, testimonial */
+/* SKIN: Design critique — hero full-bleed, brief de proiect, metrici, testimonial */
 export default function CaseStudySkin({
   article,
   locale,
