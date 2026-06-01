@@ -7,7 +7,7 @@ const BASE = `https://${PROJECT}.api.sanity.io/v${API}`;
 const SLUG = "cum-ajung-oamenii-sa-isi-aminteasca-un-brand";
 
 const CANDIDATES = [
-  "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=2400&q=80", // piață în aer liber
+  "https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=2400&q=80", // culoar de supermarket plin de produse, fără text englez/$
 ];
 
 async function uploadLandscape() {
@@ -15,7 +15,7 @@ async function uploadLandscape() {
     const res = await fetch(url);
     if (!res.ok) { console.log("skip fetch", res.status); continue; }
     const buf = Buffer.from(await res.arrayBuffer());
-    const up = await fetch(`${BASE}/assets/images/${DATASET}?filename=a5-cover-piata.jpg`, {
+    const up = await fetch(`${BASE}/assets/images/${DATASET}?filename=a5-cover-supermarket.jpg`, {
       method: "POST",
       headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "image/jpeg" },
       body: buf,
@@ -44,7 +44,7 @@ async function main() {
   const coverImage = {
     _type: "image",
     asset: { _type: "reference", _ref: ref },
-    alt: "Piață plină de produse — întâlnim sute în fiecare zi, dar doar câteva branduri rămân în memorie",
+    alt: "Culoar de supermarket plin de produse — întâlnim sute în fiecare zi, dar doar câteva branduri rămân în memorie",
   };
   const mut = await fetch(`${BASE}/data/mutate/${DATASET}?returnIds=true`, {
     method: "POST",
