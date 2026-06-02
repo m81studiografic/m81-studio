@@ -7,8 +7,8 @@ import {
   type Locale,
   type ResolvedArticle,
   categoryLabel,
-  formatDate,
 } from "../_lib/types";
+import type { CategoryGroup } from "../page";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap');
@@ -24,15 +24,9 @@ const T = {
     intro: "Observații, cercetare și gânduri despre cum construim identități și experiențe care contează.",
     read: "Citește", min: "min", readTime: "Timp citire",
     featuredLabel: "Eseu principal",
-    recentLabel: "Insight-uri recente",
-    viewInsight: "Vezi insight",
-    researchLabel: "Industry Research",
-    researchTitle: "Cercetare de industrie",
-    researchIntro: "Observații, analize și oportunități identificate în industriile pe care le investigăm.",
+    viewAll: "Vezi toate",
     reportView: "Vezi cercetarea",
-    caseLabel: "Design critique selectat",
-    caseView: "Vezi critica completă",
-    archiveLabel: "Arhivă",
+    caseView: "Vezi critica",
     helpText: "Ai nevoie de ajutor cu brandul tău?",
     helpLink: "Hai să vorbim →",
     empty: "Încă nu am publicat articole. Revino curând.",
@@ -44,80 +38,201 @@ const T = {
     intro: "Observations, research and thoughts on how we build identities and experiences that matter.",
     read: "Read", min: "min", readTime: "Read time",
     featuredLabel: "Feature Essay",
-    recentLabel: "Recent insights",
-    viewInsight: "View insight",
-    researchLabel: "Industry Research",
-    researchTitle: "Industry research",
-    researchIntro: "Observations, analyses and opportunities identified in the industries we investigate.",
+    viewAll: "View all",
     reportView: "View research",
-    caseLabel: "Selected design critique",
-    caseView: "View full critique",
-    archiveLabel: "Archive",
-    ctaBadge: "Ready to start?",
-    ctaTitle: "Let's build<br/>something together.",
+    caseView: "View critique",
     helpText: "Need a hand with your brand?",
     helpLink: "Let's talk →",
     empty: "We haven't published any articles yet. Check back soon.",
   },
 } as const;
 
-function Label({ text }: { text: string }) {
-  return (
-    <div className="flex items-center gap-3.5 mb-14">
-      <span className="w-2 h-2 rounded-full bg-[var(--lime)] shrink-0" />
-      <span className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-[var(--gray-900)]">{text}</span>
-      <span className="flex-1 h-px bg-[rgba(13,13,11,0.1)]" />
-    </div>
-  );
-}
+type Dict = { readonly [K in keyof typeof T.ro]: string };
 
 const img = (a: ResolvedArticle, w: number) =>
   urlFor(a.coverImage).width(w).fit("max").auto("format").url();
 
-function InsightCard({ a, n, view, cur, href }: { a: ResolvedArticle; n: string; view: string; cur: string; href: string }) {
-  const cat = categoryLabel(a.category);
+/* ── Antet de secțiune: etichetă + „Vezi toate (N) →” ── */
+function SectionHeader({ label, total, allHref, viewAll, dark }: { label: string; total: number; allHref: string; viewAll: string; dark?: boolean }) {
   return (
-    <Link href={href} data-cur={cur} className="group block no-underline">
-      <div className="relative overflow-hidden rounded-md bg-[#e8e7e3]" style={{ aspectRatio: "4/3" }}>
+    <div className="flex items-center gap-4 mb-12">
+      <span className="w-2 h-2 rounded-full bg-[var(--lime)] shrink-0" />
+      <span className={`text-[11px] font-extrabold tracking-[0.2em] uppercase ${dark ? "text-[var(--lime)]" : "text-[var(--gray-900)]"}`}>{label}</span>
+      <span className={`flex-1 h-px ${dark ? "bg-[rgba(255,255,255,0.15)]" : "bg-[rgba(13,13,11,0.1)]"}`} />
+      <Link href={allHref} data-cur={viewAll}
+        className={`group inline-flex items-center gap-2 text-[11px] font-black tracking-[0.14em] uppercase no-underline whitespace-nowrap ${dark ? "text-white" : "text-[var(--black)]"}`}>
+        {viewAll} <span className="text-[rgba(13,13,11,0.4)]">({total})</span>
+        <span className="transition-transform duration-300 ease-out group-hover:translate-x-[3px]">→</span>
+      </Link>
+    </div>
+  );
+}
+
+/* ── Card mare (lead-ul unei secțiuni) ── */
+function FeatureCard({ a, href, read, min, className = "" }: { a: ResolvedArticle; href: string; read: string; min: string; className?: string }) {
+  return (
+    <Link href={href} data-cur={read} className={`group block no-underline ${className}`}>
+      <div className="relative overflow-hidden rounded-lg bg-[#e8e7e3]" style={{ aspectRatio: "16/9" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={img(a, 900)} alt={a.title}
-          className="w-full h-full object-cover transition-all duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] scale-100 brightness-95 group-hover:scale-[1.06] group-hover:brightness-[0.85]" />
-        <div className="absolute bottom-3.5 left-3.5 bg-[var(--lime)] text-black text-[9px] font-black tracking-[0.12em] uppercase py-1.5 px-3 rounded-full transition-all duration-300 ease-out opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0">
-          {cat}
-        </div>
+        <img src={img(a, 1200)} alt={a.title}
+          className="w-full h-full object-cover transition-all duration-[900ms] ease-[cubic-bezier(.23,1,.32,1)] brightness-95 group-hover:scale-[1.04] group-hover:brightness-[0.85]" />
       </div>
-      <div className="mt-5">
-        <span className="text-[11px] font-extrabold tracking-[0.1em] uppercase"><span className="text-[var(--gray-900)]">{n}</span> <span className="text-[rgba(13,13,11,0.5)]">/ {cat}</span></span>
-        <h3 className="text-[clamp(20px,2vw,26px)] font-extrabold tracking-[-0.025em] text-[var(--black)] leading-[1.15] mt-3 mb-3 m-0">{a.title}</h3>
-        <p className="text-[14px] leading-[1.7] text-[rgba(13,13,11,0.6)] m-0 mb-5 line-clamp-3">{a.excerpt}</p>
-        <span className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] uppercase text-[var(--black)]">
-          {view} <span className="transition-transform duration-300 ease-out group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">↗</span>
-        </span>
+      <span className="mt-6 inline-block text-[11px] font-extrabold tracking-[0.1em] uppercase text-[rgba(13,13,11,0.5)]">{categoryLabel(a.category)}</span>
+      <h3 className="text-[clamp(24px,2.8vw,38px)] font-extrabold tracking-[-0.03em] leading-[1.1] text-[var(--black)] mt-3 mb-4 m-0">{a.title}</h3>
+      <p className="text-[clamp(14px,1.4vw,17px)] font-light leading-[1.7] text-[rgba(13,13,11,0.6)] m-0 line-clamp-2 max-w-[620px]">{a.excerpt}</p>
+      {a.readTime && <span className="mt-4 block text-[12px] text-[rgba(13,13,11,0.45)]">{a.readTime} {min}</span>}
+    </Link>
+  );
+}
+
+/* ── Rând mic (item secundar, orizontal) ── */
+function SmallRow({ a, href, read }: { a: ResolvedArticle; href: string; read: string }) {
+  return (
+    <Link href={href} data-cur={read} className="group flex gap-5 no-underline items-start py-1">
+      <div className="relative overflow-hidden rounded-md bg-[#e8e7e3] shrink-0 w-[112px] sm:w-[140px]" style={{ aspectRatio: "4/3" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={img(a, 360)} alt={a.title}
+          className="w-full h-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(.23,1,.32,1)] group-hover:scale-[1.07]" />
+      </div>
+      <div className="min-w-0">
+        <span className="text-[10px] font-extrabold tracking-[0.1em] uppercase text-[rgba(13,13,11,0.45)]">{categoryLabel(a.category)}</span>
+        <h4 className="text-[clamp(16px,1.5vw,19px)] font-extrabold tracking-[-0.02em] leading-[1.22] text-[var(--black)] mt-1.5 mb-0 m-0 group-hover:text-[rgba(13,13,11,0.65)] transition-colors">{a.title}</h4>
       </div>
     </Link>
+  );
+}
+
+/* ── Secțiune de categorie: lead mare + coloană de iteme mici (ritm tip revistă) ── */
+function CategoryBlock({ group, locale, t }: { group: CategoryGroup; locale: Locale; t: Dict; }) {
+  const href = (a: ResolvedArticle) => `/${locale}/jurnal/${a.slug}`;
+  const allHref = `/${locale}/jurnal/c/${group.slug}`;
+  const read = t.read;
+  const items = group.items;
+  const lead = items[0];
+  const rest = items.slice(1, 4);
+
+  return (
+    <section className="pb-[clamp(56px,9vw,112px)]">
+      <SectionHeader label={group.label} total={group.total} allHref={allHref} viewAll={t.viewAll} />
+      <FadeUp>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-12">
+          <FeatureCard a={lead} href={href(lead)} read={read} min={t.min} className="lg:col-span-7" />
+          {rest.length > 0 && (
+            <div className="lg:col-span-5 flex flex-col gap-7 lg:border-l lg:border-[rgba(13,13,11,0.1)] lg:pl-12">
+              {rest.map((a) => (
+                <SmallRow key={a._id} a={a} href={href(a)} read={read} />
+              ))}
+            </div>
+          )}
+        </div>
+      </FadeUp>
+    </section>
+  );
+}
+
+/* ── Industry Research — bloc dark, distinct ── */
+function ResearchBlock({ group, locale, t, isRo }: { group: CategoryGroup; locale: Locale; t: Dict; isRo: boolean }) {
+  const href = (a: ResolvedArticle) => `/${locale}/jurnal/${a.slug}`;
+  const allHref = `/${locale}/jurnal/c/${group.slug}`;
+  const items = group.items.slice(0, 4);
+  return (
+    <div className="pb-[clamp(56px,9vw,112px)]">
+      <FadeUp>
+        <div className="relative overflow-hidden rounded-[28px] bg-[var(--gray-900)] px-[clamp(28px,5vw,72px)] py-[clamp(44px,6vw,80px)]">
+          <div className="absolute -right-16 -top-16 w-[280px] h-[280px] rounded-full border border-[rgba(196,242,13,0.12)] pointer-events-none" />
+          <div className="flex flex-wrap items-end justify-between gap-6 max-w-[640px]">
+            <div>
+              <span className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-[var(--lime)]">{group.label}</span>
+              <h3 className="text-[clamp(26px,3.4vw,42px)] font-extrabold tracking-[-0.03em] leading-[1.1] text-white mt-4 mb-4 m-0">{isRo ? "Cercetare de industrie" : "Industry research"}</h3>
+              <p className="text-[15px] leading-[1.7] text-[rgba(255,255,255,0.5)] m-0">{group.intro}</p>
+            </div>
+          </div>
+          <div className="mt-[clamp(32px,5vw,56px)]">
+            {items.map((a, i) => (
+              <Link key={a._id} href={href(a)} data-cur={isRo ? "Vezi" : "View"}
+                className="group flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 no-underline border-t border-[rgba(255,255,255,0.12)] last:border-b py-[clamp(20px,3vw,30px)] transition-[padding] duration-[350ms] ease-[cubic-bezier(.23,1,.32,1)] md:hover:pl-3">
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] font-extrabold tracking-[0.14em] uppercase text-[var(--lime)]">{isRo ? "Raport" : "Report"} {String(i + 1).padStart(3, "0")}</span>
+                  <h5 className="text-[clamp(18px,2.1vw,27px)] font-extrabold tracking-[-0.02em] text-white leading-[1.15] m-0">{a.title}</h5>
+                </div>
+                <div className="flex items-center gap-8 shrink-0">
+                  {a.readTime && <span className="hidden lg:block text-[13px] text-[rgba(255,255,255,0.4)]">{a.readTime} {t.min}</span>}
+                  <span className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] uppercase text-white whitespace-nowrap">
+                    {t.reportView} <span className="transition-transform duration-300 ease-out group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">↗</span>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-9">
+            <Link href={allHref} data-cur={t.viewAll}
+              className="group inline-flex items-center gap-2 text-[11px] font-black tracking-[0.14em] uppercase text-white no-underline border-b border-[rgba(255,255,255,0.4)] pb-1 hover:border-[var(--lime)] transition-colors">
+              {t.viewAll} <span className="text-[rgba(255,255,255,0.5)]">({group.total})</span>
+              <span className="transition-transform duration-300 ease-out group-hover:translate-x-[3px]">→</span>
+            </Link>
+          </div>
+        </div>
+      </FadeUp>
+    </div>
+  );
+}
+
+/* ── Design critique — bloc asimetric ── */
+function CaseBlock({ group, locale, t, isRo }: { group: CategoryGroup; locale: Locale; t: Dict; isRo: boolean }) {
+  const href = (a: ResolvedArticle) => `/${locale}/jurnal/${a.slug}`;
+  const allHref = `/${locale}/jurnal/c/${group.slug}`;
+  const lead = group.items[0];
+  const rest = group.items.slice(1, 3);
+  return (
+    <section className="pb-[clamp(56px,9vw,112px)]">
+      <SectionHeader label={group.label} total={group.total} allHref={allHref} viewAll={t.viewAll} />
+      <FadeUp>
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+          <aside className="lg:w-1/3 lg:sticky lg:top-28 h-fit">
+            <h4 className="text-[clamp(24px,3vw,38px)] font-extrabold tracking-[-0.03em] leading-[1.12] text-[var(--black)] mb-5 m-0">{lead.title}</h4>
+            <p className="text-[15px] leading-[1.7] text-[var(--muted)] mb-7 m-0 line-clamp-4">{lead.excerpt}</p>
+            <Link href={href(lead)} data-cur={isRo ? "Vezi" : "View"}
+              className="group inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] uppercase text-[var(--black)] border-b border-[var(--black)] pb-[3px] no-underline transition-colors hover:border-[var(--lime)]">
+              {t.caseView} <span className="transition-transform duration-300 ease-out group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">↗</span>
+            </Link>
+          </aside>
+          <div className="lg:w-2/3 grid grid-cols-2 gap-4">
+            <Link href={href(lead)} data-cur={t.read} className="group col-span-2 relative overflow-hidden rounded-md bg-[#e8e7e3]" style={{ aspectRatio: "16/9" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={img(lead, 1200)} alt={lead.title} className="w-full h-full object-cover transition-all duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] brightness-95 group-hover:scale-[1.05] group-hover:brightness-[0.85]" />
+            </Link>
+            {rest.map((c) => (
+              <Link key={c._id} href={href(c)} data-cur={t.read} className="group relative overflow-hidden rounded-md bg-[#e8e7e3]" style={{ aspectRatio: "1/1" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img(c, 700)} alt={c.title} className="w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] group-hover:scale-[1.05]" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </FadeUp>
+    </section>
   );
 }
 
 export default function JurnalIndex({
   locale,
   featured,
-  recent,
-  research,
-  cases,
-  archive,
+  groups,
 }: {
   locale: Locale;
   featured: ResolvedArticle | null;
-  recent: ResolvedArticle[];
-  research: ResolvedArticle[];
-  cases: ResolvedArticle[];
-  archive: { head: string; items: ResolvedArticle[] }[];
+  groups: CategoryGroup[];
 }) {
   const isRo = locale === "ro";
   const t = isRo ? T.ro : T.en;
   const cur = isRo ? "Citește" : "Read";
   const href = (a: ResolvedArticle) => `/${locale}/jurnal/${a.slug}`;
-  const featuredCase = cases[0];
+
+  /* În secțiuni, nu repetăm eseul principal afișat în hero */
+  const sectionGroups = groups.map((g) => ({
+    ...g,
+    items: g.items.filter((a) => a._id !== featured?._id),
+  })).filter((g) => g.items.length > 0);
 
   return (
     <>
@@ -126,7 +241,7 @@ export default function JurnalIndex({
         <div className="max-w-[1440px] mx-auto px-[var(--page-px)]">
 
           {/* HERO */}
-          <header className="pt-[clamp(48px,7vw,88px)] pb-[clamp(56px,8vw,104px)] border-b border-[rgba(13,13,11,0.08)]">
+          <header className="pt-[clamp(48px,7vw,88px)] pb-[clamp(48px,7vw,88px)] border-b border-[rgba(13,13,11,0.08)]">
             <HeroBadge text={t.badge} />
             <FadeUp>
               <h1 className="text-[clamp(40px,7vw,84px)] font-extrabold tracking-[-0.04em] leading-[1.02] max-w-[1100px] m-0">
@@ -149,13 +264,13 @@ export default function JurnalIndex({
 
           {/* FEATURED */}
           {featured && (
-            <section className="py-[clamp(56px,9vw,120px)]">
+            <section className="py-[clamp(48px,8vw,104px)]">
               <FadeUp>
                 <Link href={href(featured)} data-cur={cur} className="group block no-underline">
                   <div className="relative overflow-hidden rounded-lg bg-[#e8e7e3]" style={{ aspectRatio: "21/9" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={img(featured, 1400)} alt={featured.title}
-                      className="w-full h-full object-cover transition-all duration-[900ms] ease-[cubic-bezier(.23,1,.32,1)] scale-100 brightness-95 group-hover:scale-[1.04] group-hover:brightness-[0.82]" />
+                      className="w-full h-full object-cover transition-all duration-[900ms] ease-[cubic-bezier(.23,1,.32,1)] brightness-95 group-hover:scale-[1.04] group-hover:brightness-[0.82]" />
                     <div className="absolute top-4 left-4 bg-[var(--lime)] text-black text-[10px] font-black tracking-[0.12em] uppercase py-2 px-4 rounded-full">
                       {t.featuredLabel}
                     </div>
@@ -183,110 +298,18 @@ export default function JurnalIndex({
             </section>
           )}
 
-          {/* RECENT INSIGHTS */}
-          {recent.length > 0 && (
-            <section className="pb-[clamp(56px,9vw,120px)]">
-              <Label text={t.recentLabel} />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-9 gap-y-14">
-                {recent.map((a, i) => (
-                  <FadeUp key={a._id} delay={i * 90}>
-                    <InsightCard a={a} n={`0${i + 1}`} view={t.viewInsight} cur={cur} href={href(a)} />
-                  </FadeUp>
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
-
-        {/* INDUSTRY RESEARCH (dark) */}
-        {research.length > 0 && (
-          <div className="max-w-[1440px] mx-auto px-[var(--page-px)] pb-[clamp(56px,9vw,120px)]">
-            <FadeUp>
-              <div className="relative overflow-hidden rounded-[28px] bg-[var(--gray-900)] px-[clamp(28px,5vw,72px)] py-[clamp(48px,7vw,88px)]">
-                <div className="absolute -right-16 -top-16 w-[280px] h-[280px] rounded-full border border-[rgba(196,242,13,0.12)] pointer-events-none" />
-                <div className="max-w-[460px]">
-                  <span className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-[var(--lime)]">{t.researchLabel}</span>
-                  <h3 className="text-[clamp(26px,3.4vw,42px)] font-extrabold tracking-[-0.03em] leading-[1.1] text-white mt-4 mb-4 m-0">{t.researchTitle}</h3>
-                  <p className="text-[15px] leading-[1.7] text-[rgba(255,255,255,0.5)] m-0">{t.researchIntro}</p>
-                </div>
-                <div className="mt-[clamp(36px,5vw,64px)]">
-                  {research.map((a, i) => (
-                    <Link key={a._id} href={href(a)} data-cur={isRo ? "Vezi" : "View"}
-                      className="group flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 no-underline border-t border-[rgba(255,255,255,0.12)] last:border-b py-[clamp(22px,3.5vw,34px)] transition-[padding] duration-[350ms] ease-[cubic-bezier(.23,1,.32,1)] md:hover:pl-3">
-                      <div className="flex flex-col gap-2">
-                        <span className="text-[10px] font-extrabold tracking-[0.14em] uppercase text-[var(--lime)]">{isRo ? "Raport" : "Report"} {String(i + 1).padStart(3, "0")}</span>
-                        <h5 className="text-[clamp(19px,2.2vw,28px)] font-extrabold tracking-[-0.02em] text-white leading-[1.15] m-0">{a.title}</h5>
-                      </div>
-                      <div className="flex items-center gap-8 shrink-0">
-                        {a.readTime && <span className="hidden lg:block text-[13px] text-[rgba(255,255,255,0.4)]">{a.readTime} {t.min}</span>}
-                        <span className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] uppercase text-white whitespace-nowrap">
-                          {t.reportView} <span className="transition-transform duration-300 ease-out group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">↗</span>
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </FadeUp>
-          </div>
-        )}
-
-        <div className="max-w-[1440px] mx-auto px-[var(--page-px)]">
-          {/* CASE STUDY */}
-          {featuredCase && (
-            <section className="pb-[clamp(56px,9vw,120px)]">
-              <Label text={t.caseLabel} />
-              <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
-                <aside className="lg:w-1/3 lg:sticky lg:top-28 h-fit">
-                  <h4 className="text-[clamp(24px,3vw,38px)] font-extrabold tracking-[-0.03em] leading-[1.12] text-[var(--black)] mb-5 m-0">{featuredCase.title}</h4>
-                  <p className="text-[15px] leading-[1.7] text-[var(--muted)] mb-7 m-0 line-clamp-4">{featuredCase.excerpt}</p>
-                  <Link href={href(featuredCase)} data-cur={isRo ? "Vezi" : "View"}
-                    className="group inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] uppercase text-[var(--black)] border-b border-[var(--black)] pb-[3px] no-underline transition-colors hover:border-[var(--lime)]">
-                    {t.caseView} <span className="transition-transform duration-300 ease-out group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">↗</span>
-                  </Link>
-                </aside>
-                <div className="lg:w-2/3 grid grid-cols-2 gap-4">
-                  <Link href={href(featuredCase)} data-cur={cur} className="group col-span-2 relative overflow-hidden rounded-md bg-[#e8e7e3]" style={{ aspectRatio: "16/9" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={img(featuredCase, 1200)} alt={featuredCase.title} className="w-full h-full object-cover transition-all duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] brightness-95 group-hover:scale-[1.05] group-hover:brightness-[0.85]" />
-                  </Link>
-                  {cases.slice(1, 3).map((c) => (
-                    <Link key={c._id} href={href(c)} data-cur={cur} className="group relative overflow-hidden rounded-md bg-[#e8e7e3]" style={{ aspectRatio: "1/1" }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={img(c, 700)} alt={c.title} className="w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(.23,1,.32,1)] group-hover:scale-[1.05]" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </section>
+          {/* SECȚIUNI PE CATEGORIE */}
+          {sectionGroups.map((g) =>
+            g.value === "research" ? (
+              <ResearchBlock key={g.value} group={g} locale={locale} t={t} isRo={isRo} />
+            ) : g.value === "case" ? (
+              <CaseBlock key={g.value} group={g} locale={locale} t={t} isRo={isRo} />
+            ) : (
+              <CategoryBlock key={g.value} group={g} locale={locale} t={t} />
+            ),
           )}
 
-          {/* ARCHIVE */}
-          {archive.length > 0 && (
-            <section className="pb-[clamp(56px,9vw,120px)]">
-              <Label text={t.archiveLabel} />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[clamp(40px,8vw,96px)] gap-y-12">
-                {archive.map((group) => (
-                  <div key={group.head}>
-                    <h4 className="text-[10px] font-extrabold tracking-[0.16em] uppercase text-[rgba(13,13,11,0.55)] pb-3 mb-2 border-b border-[rgba(13,13,11,0.1)] m-0">{group.head}</h4>
-                    <ul className="list-none m-0 p-0">
-                      {group.items.map((it) => (
-                        <li key={it._id} className="flex justify-between items-baseline gap-4 border-b border-[rgba(13,13,11,0.06)]">
-                          <Link href={href(it)} data-cur={cur}
-                            className="text-[clamp(15px,1.6vw,17px)] font-semibold text-[var(--black)] no-underline py-3.5 transition-[padding] duration-200 ease-out hover:pl-2 block">
-                            {it.title}
-                          </Link>
-                          <span className="text-[12px] text-[rgba(13,13,11,0.45)] whitespace-nowrap">{formatDate(it.publishedAt, locale)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* CTA discret — ton editorial, nu bannerul de pe site */}
+          {/* CTA discret */}
           <section className="pt-[clamp(40px,6vw,72px)] pb-[clamp(64px,9vw,128px)] border-t border-[rgba(13,13,11,0.1)]">
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
               <p className="text-[clamp(15px,1.4vw,18px)] font-light text-[rgba(13,13,11,0.6)] m-0">

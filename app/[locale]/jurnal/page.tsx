@@ -4,23 +4,28 @@ import {
   type ArticleDoc,
   type Locale,
   type ResolvedArticle,
-  categoryLabel,
   resolveArticle,
 } from "./_lib/types";
+import { CATEGORY_META } from "./_lib/categories";
 import JurnalIndex from "./_components/JurnalIndex";
 
-export const revalidate = 60; // reîmprospătare la 60s (articole zilnice)
+export const revalidate = 60; // reîmprospătare la 60s
 
 async function getArticles(): Promise<ArticleDoc[]> {
   try {
-    return await client.fetch(
-      allArticlesQuery,
-      {},
-      { next: { revalidate: 60 } },
-    );
+    return await client.fetch(allArticlesQuery, {}, { next: { revalidate: 60 } });
   } catch {
     return [];
   }
+}
+
+export interface CategoryGroup {
+  value: string;
+  slug: string;
+  label: string;
+  intro: string;
+  items: ResolvedArticle[]; // toate articolele din categorie (cele mai noi primele)
+  total: number;
 }
 
 export default async function JurnalPage({
@@ -37,42 +42,18 @@ export default async function JurnalPage({
   /* eseu principal: cel marcat featured, altfel cel mai nou */
   const featured = all.find((a) => a.featured) ?? all[0] ?? null;
 
-  /* insight-uri recente: excludem eseul principal, primele 3 */
-  const recent = all.filter((a) => a._id !== featured?._id).slice(0, 3);
+  /* grupuri pe categorie, în ordinea din CATEGORY_META */
+  const groups: CategoryGroup[] = CATEGORY_META.map((meta) => {
+    const items = all.filter((a) => a.category === meta.value);
+    return {
+      value: meta.value,
+      slug: meta.slug,
+      label: meta.label,
+      intro: loc === "en" ? meta.introEn : meta.introRo,
+      items,
+      total: items.length,
+    };
+  }).filter((g) => g.total > 0);
 
-  /* cercetare de industrie (bloc dark) */
-  const research = all.filter((a) => a.category === "research").slice(0, 3);
-
-  /* studii de caz */
-  const cases = all.filter((a) => a.category === "case").slice(0, 3);
-
-  /* arhivă: grupată pe categorie, fără cele deja afișate sus */
-  const shownIds = new Set<string>(
-    [featured, ...recent, ...research, ...cases]
-      .filter(Boolean)
-      .map((a) => (a as ResolvedArticle)._id),
-  );
-  const grouped = new Map<string, ResolvedArticle[]>();
-  for (const a of all) {
-    if (shownIds.has(a._id)) continue;
-    const head = categoryLabel(a.category);
-    const list = grouped.get(head) ?? [];
-    list.push(a);
-    grouped.set(head, list);
-  }
-  const archive = Array.from(grouped.entries()).map(([head, items]) => ({
-    head,
-    items,
-  }));
-
-  return (
-    <JurnalIndex
-      locale={loc}
-      featured={featured}
-      recent={recent}
-      research={research}
-      cases={cases}
-      archive={archive}
-    />
-  );
+  return <JurnalIndex locale={loc} featured={featured} groups={groups} />;
 }
