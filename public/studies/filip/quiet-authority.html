@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Filip &amp; Company — Concept M81 · Quiet Authority</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4EEE4; --cream-2:#EDE5D7; --paper:#FBF7F0;
+    --aubergine:#3C1253; --aubergine-deep:#2E0C22;
+    --bronze:#A8884E; --bronze-lt:#C2A368;
+    --ink:#241018; --muted:#6E5C66; --wood:#C7A47A;
+    --line:rgba(46,12,34,.14); --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:300;line-height:1.05;letter-spacing:-.018em}
+  a{color:inherit;text-decoration:none}
+  .eyebrow{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze)}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:50;background:rgba(244,238,228,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px}
+  .logo{display:flex;align-items:center;gap:14px}
+  .logo .mono{font-family:'Fraunces',serif;font-weight:500;font-size:20px;color:var(--paper);background:var(--aubergine-deep);width:46px;height:38px;display:flex;align-items:center;justify-content:center;letter-spacing:.02em}
+  .logo .mono .amp{color:var(--bronze-lt);font-size:.8em}
+  .logo .wm{font-family:'Fraunces',serif;font-weight:500;font-size:23px;letter-spacing:-.01em;color:var(--aubergine)}
+  .menu{display:flex;gap:40px;align-items:center}
+  .menu a{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--muted);transition:color .25s}
+  .menu a:hover{color:var(--aubergine)}
+  .menu .lang{font-size:11px;letter-spacing:.1em;color:var(--bronze)}
+  .menu .pill{border:1px solid var(--aubergine);border-radius:999px;padding:9px 22px;color:var(--aubergine)}
+  .menu .pill:hover{background:var(--aubergine);color:var(--paper)}
+
+  /* HERO */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:88vh;align-items:stretch}
+  .hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 64px 80px 0}
+  .hero h1{font-size:clamp(2.8rem,4.8vw,4.6rem);color:var(--ink);margin:26px 0 0}
+  .hero h1 em{font-style:italic;color:var(--aubergine)}
+  .hero .sub{margin-top:28px;max-width:34ch;font-size:1.2rem;color:var(--muted);font-weight:300;line-height:1.55}
+  .hero .cta{margin-top:40px;display:flex;gap:24px;align-items:center}
+  .btn{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:.03em;background:var(--aubergine);color:var(--paper);padding:16px 30px;border-radius:2px;transition:.3s var(--ease)}
+  .btn:hover{background:var(--aubergine-deep)}
+  .btn-ghost{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:.03em;color:var(--aubergine);border-bottom:1px solid var(--bronze);padding-bottom:3px}
+  .hero .proof{margin-top:54px;padding-top:24px;border-top:1px solid var(--line);max-width:42ch}
+  .hero .proof small{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze)}
+  .hero .proof p{font-size:1.02rem;color:var(--ink);margin-top:8px;font-style:italic}
+  .hero-img{position:relative;overflow:hidden;background:
+      linear-gradient(180deg,rgba(46,12,34,.05),rgba(46,12,34,.42)),
+      repeating-linear-gradient(92deg,#3a2418 0 13px,#5a3a22 13px 17px,#43291a 17px 21px);}
+  .hero-img .ring{position:absolute;top:64px;left:50%;transform:translateX(-50%);width:200px;height:200px;border:4px solid rgba(232,200,140,.7);border-radius:50%;box-shadow:0 0 40px 6px rgba(232,200,140,.3)}
+  .hero-img .chair{position:absolute;bottom:0;right:8%;width:230px;height:240px;background:linear-gradient(160deg,#5a1f3a,#2e0c22);border-radius:120px 120px 14px 14px}
+  .hero-img .tag{position:absolute;left:28px;bottom:26px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,247,240,.85)}
+  .hero-img .tag b{display:block;font-family:'Fraunces',serif;font-size:20px;text-transform:none;letter-spacing:0;font-weight:400;margin-top:4px;color:#fbf7f0}
+
+  /* PROOF BAR */
+  .proofbar{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .proofbar .grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .proofbar .cell{padding:46px 28px;border-right:1px solid var(--line)}
+  .proofbar .cell:last-child{border:none}
+  .proofbar .n{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:400;color:var(--aubergine);line-height:1}
+  .proofbar .d{margin-top:10px;font-size:.95rem;color:var(--muted);line-height:1.4}
+
+  section.block{padding:110px 0}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px}
+  .head h2{font-size:clamp(2rem,3.4vw,2.9rem);font-weight:400;max-width:16ch}
+  .head p{max-width:32ch;color:var(--muted);font-size:1.05rem;font-weight:300}
+
+  /* EXPERTISE */
+  .exp a{display:grid;grid-template-columns:60px 1fr auto;gap:28px;align-items:center;padding:28px 0;border-top:1px solid var(--line);transition:padding-left .35s var(--ease)}
+  .exp a:last-child{border-bottom:1px solid var(--line)}
+  .exp a:hover{padding-left:16px;background:linear-gradient(90deg,rgba(60,18,83,.035),transparent)}
+  .exp .i{font-family:'Inter',sans-serif;font-size:12px;color:var(--bronze);letter-spacing:.1em}
+  .exp .n{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:400}
+  .exp a:hover .n{color:var(--aubergine)}
+  .exp .m{font-family:'Inter',sans-serif;font-size:.88rem;color:var(--muted);letter-spacing:.02em}
+
+  /* APPROACH - aubergine focus */
+  .focus{background:var(--aubergine-deep);color:#EAD9E0;position:relative;overflow:hidden}
+  .focus .ring{position:absolute;border:2px solid rgba(232,200,140,.16);border-radius:50%}
+  .focus .r1{width:480px;height:480px;right:-140px;top:-160px}
+  .focus .r2{width:260px;height:260px;right:-10px;top:120px}
+  .focus .inner{padding:130px 0;position:relative;z-index:2}
+  .focus h2{font-size:clamp(2.2rem,4vw,3.5rem);color:#FBF7F0;max-width:20ch}
+  .focus h2 em{font-style:italic;color:var(--bronze-lt)}
+  .focus p{margin-top:24px;max-width:48ch;color:rgba(234,217,224,.72);font-weight:300;font-size:1.12rem}
+
+  /* PEOPLE */
+  .people{background:var(--paper)}
+  .ppl{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .person .pic{aspect-ratio:3/4;border-radius:3px;background:linear-gradient(165deg,#5a4a52,#2c1620 72%);position:relative;overflow:hidden;box-shadow:0 18px 40px -26px rgba(46,12,34,.5)}
+  .person .pic::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 32% 22%,rgba(199,164,122,.28),transparent 55%)}
+  .person .nm{font-family:'Fraunces',serif;font-size:1.16rem;font-weight:500;margin-top:15px}
+  .person .rl{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.05em;color:var(--muted);margin-top:3px}
+
+  /* MANDATES */
+  .mand a{display:block;padding:26px 0;border-top:1px solid var(--line)}
+  .mand a:last-child{border-bottom:1px solid var(--line)}
+  .mand .k{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze)}
+  .mand .t{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:400;margin-top:8px;max-width:60ch;line-height:1.25;transition:color .3s}
+  .mand a:hover .t{color:var(--aubergine)}
+
+  /* INSIGHTS */
+  .ins{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .art .rule{height:1px;background:var(--line);margin-bottom:20px;position:relative}
+  .art .rule::after{content:"";position:absolute;left:0;top:0;height:100%;width:0;background:var(--aubergine);transition:width .5s var(--ease)}
+  .art:hover .rule::after{width:46px}
+  .art .k{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--bronze)}
+  .art h3{font-size:1.35rem;font-weight:400;margin:13px 0 14px;line-height:1.2}
+  .art:hover h3{color:var(--aubergine)}
+  .art .dt{font-family:'Inter',sans-serif;font-size:12px;color:var(--muted)}
+
+  /* CTA strip */
+  .ctas{background:var(--cream-2);border-top:1px solid var(--line);text-align:center;padding:100px 0}
+  .ctas h2{font-size:clamp(2rem,3.4vw,2.9rem);font-weight:300;max-width:22ch;margin:0 auto}
+  .ctas h2 em{font-style:italic;color:var(--aubergine)}
+  .ctas .btn{margin-top:34px;display:inline-block}
+
+  /* FOOTER */
+  footer{background:var(--aubergine-deep);color:rgba(234,217,224,.72);padding:80px 0 40px}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;gap:36px}
+  .foot .brand .mono{font-family:'Fraunces',serif;font-weight:500;font-size:20px;color:var(--paper);background:rgba(255,255,255,.08);width:46px;height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .foot .brand .mono .amp{color:var(--bronze-lt)}
+  .foot .brand p{max-width:26ch;font-size:.92rem;font-weight:300}
+  .foot h4{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-lt);margin-bottom:18px}
+  .foot ul{list-style:none}
+  .foot li{margin-bottom:10px}
+  .foot a{font-size:.96rem;color:rgba(234,217,224,.72);transition:color .2s}
+  .foot a:hover{color:#fbf7f0}
+  .foot .base{grid-column:1/-1;margin-top:54px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.03em}
+
+  .badge{position:fixed;left:22px;bottom:22px;z-index:99;background:var(--ink);color:var(--cream);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.08em;padding:10px 16px;border-radius:999px;box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}
+  .badge b{color:var(--bronze-lt)}
+
+  @media(max-width:920px){
+    .wrap{padding:0 24px}
+    .hero{grid-template-columns:1fr;min-height:auto}
+    .hero-left{padding:60px 0}
+    .hero-img{height:420px}
+    .proofbar .grid{grid-template-columns:1fr 1fr}
+    .proofbar .cell:nth-child(2){border-right:none}
+    .proofbar .cell{border-bottom:1px solid var(--line)}
+    .ppl{grid-template-columns:1fr 1fr}
+    .ins{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr}
+    .menu{display:none}
+    .head{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <span class="mono">F<span class="amp">&amp;</span>C</span>
+      <span class="wm">Filip &amp; Company</span>
+    </a>
+    <nav class="menu">
+      <a href="#">Business</a>
+      <a href="#">Law</a>
+      <a href="#">Insights</a>
+      <a href="#" class="lang">RO · EN</a>
+      <a href="#" class="pill">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero wrap" style="max-width:1280px">
+  <div class="hero-left">
+    <span class="eyebrow">Avocatură de afaceri · București</span>
+    <h1>Stăm lângă deciziile care <em>construiesc</em> afaceri.</h1>
+    <p class="sub">Consultanță riguroasă și discretă pentru companiile care nu-și permit să greșească momentul.</p>
+    <div class="cta">
+      <a href="#" class="btn">Vezi mandatele noastre</a>
+      <a href="#" class="btn-ghost">Cunoaște echipa →</a>
+    </div>
+    <div class="proof">
+      <small>Mandate recente</small>
+      <p>„Am asistat Banca Transilvania pe cea mai mare emisiune de obligațiuni din Europa Centrală și de Est."</p>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="ring"></div>
+    <div class="chair"></div>
+    <span class="tag">Momentele dinaintea deciziei<b>Quiet confidence. Human expertise.</b></span>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proofbar">
+  <div class="wrap grid">
+    <div class="cell"><div class="n">1 mld €</div><div class="d">Emisiune de obligațiuni — Banca Transilvania, cea mai mare din CEE</div></div>
+    <div class="cell"><div class="n">22</div><div class="d">Arii de practică, un singur standard de exigență</div></div>
+    <div class="cell"><div class="n">10</div><div class="d">Parteneri · un parteneriat, nu un nume</div></div>
+    <div class="cell"><div class="n">2008</div><div class="d">Experiență construită din prima criză încoace</div></div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section class="block exp">
+  <div class="wrap">
+    <div class="head"><h2>Ce facem, fără ambalaj.</h2><p>Fără imagini de umplutură. Doar ariile în care intrăm — și rezultatele pe care le lăsăm în urmă.</p></div>
+    <a href="#"><span class="i">01</span><span class="n">Corporate &amp; M&amp;A</span><span class="m">Tranzacții · restructurări · guvernanță</span></a>
+    <a href="#"><span class="i">02</span><span class="n">Piețe de capital</span><span class="m">IPO · obligațiuni · reglementare</span></a>
+    <a href="#"><span class="i">03</span><span class="n">Banking &amp; Finanțări</span><span class="m">Credite sindicalizate · garanții</span></a>
+    <a href="#"><span class="i">04</span><span class="n">Litigii &amp; Arbitraj</span><span class="m">Dispute comerciale · arbitraj internațional</span></a>
+    <a href="#"><span class="i">05</span><span class="n">Concurență</span><span class="m">Investigații · ajutor de stat · conformare</span></a>
+    <a href="#"><span class="i">06</span><span class="n">Energie &amp; Resurse</span><span class="m">Proiecte · tranziție · reglementare sectorială</span></a>
+    <a href="#"><span class="i">07</span><span class="n">Imobiliare &amp; Proiecte</span><span class="m">Dezvoltări · achiziții · finanțări</span></a>
+  </div>
+</section>
+
+<!-- APPROACH / FOCUS -->
+<section class="focus">
+  <div class="ring r1"></div><div class="ring r2"></div>
+  <div class="wrap inner">
+    <span class="eyebrow" style="color:var(--bronze-lt)">Arhitectura deciziei</span>
+    <h2 style="margin-top:20px">Lucrăm în <em>momentele</em> dinaintea unei decizii.</h2>
+    <p>Acolo unde complexitatea întâlnește judecata. Vă răspundem cu o opinie, nu cu o broșură — clar, riguros, până la capăt.</p>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section class="block people">
+  <div class="wrap">
+    <div class="head"><h2>Oameni cu nume, nu cu funcții.</h2><p>Un parteneriat real. Portretistica e cea mai sinceră parte a brandului — o punem în față.</p></div>
+    <div class="ppl">
+      <div class="person"><div class="pic"></div><div class="nm">Cristina Filip</div><div class="rl">Managing Partner</div></div>
+      <div class="person"><div class="pic"></div><div class="nm">Alina Stancu Bîrsan</div><div class="rl">Partner · Corporate &amp; M&amp;A</div></div>
+      <div class="person"><div class="pic"></div><div class="nm">Cătălin Alexandru</div><div class="rl">Partner · Dispute Resolution</div></div>
+      <div class="person"><div class="pic"></div><div class="nm">Olga Niță</div><div class="rl">Partner · Banking &amp; Finance</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MANDATES -->
+<section class="block">
+  <div class="wrap">
+    <div class="head"><h2>Ce am făcut.</h2><p>Fapte, nu adjective. Mandatele vorbesc în locul nostru.</p></div>
+    <div class="mand">
+      <a href="#"><span class="k">Piețe de capital · 2026</span><div class="t">Am asistat Banca Transilvania pe o emisiune de obligațiuni de 1 miliard €, cea mai mare tranzacție de acest fel din Europa Centrală și de Est.</div></a>
+      <a href="#"><span class="k">Capital Markets · 2026</span><div class="t">Am asistat Christian Tour la listarea pe Bursa de Valori București.</div></a>
+      <a href="#"><span class="k">M&amp;A · 2025</span><div class="t">Am asistat Sameday (grupul eMAG) în achiziția companiei de curierat Cargus.</div></a>
+      <a href="#"><span class="k">M&amp;A · 2024</span><div class="t">Am asistat Digi Spain în vânzarea unei rețele FTTH, într-o tranzacție de până la 750 milioane €.</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="block" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="head"><h2>Insights</h2><p>Citit, nu răsfoit. Un jurnal, nu o listă de comunicate.</p></div>
+    <div class="ins">
+      <a class="art" href="#"><div class="rule"></div><span class="k">Protecția datelor</span><h3>O privire asupra sancțiunilor din 2025 și ce înseamnă pentru 2026.</h3><span class="dt">12 martie 2026</span></a>
+      <a class="art" href="#"><div class="rule"></div><span class="k">Concurență</span><h3>Competition Law: bilanțul anului și direcțiile care vin.</h3><span class="dt">5 mai 2026</span></a>
+      <a class="art" href="#"><div class="rule"></div><span class="k">Dreptul muncii</span><h3>Noul cadru de stabilitate pentru tineri — ce se schimbă pentru angajatori.</h3><span class="dt">5 mai 2026</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="ctas">
+  <div class="wrap">
+    <span class="eyebrow">O singură întrebare</span>
+    <h2 style="margin-top:18px">Aveți o decizie care nu suportă <em>aproximări</em>?</h2>
+    <a href="#" class="btn">Începeți o conversație</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <div class="mono">F<span class="amp">&amp;</span>C</div>
+      <p>Equilibrium Building, etaj 8 · Gara Herăstrău, București. Avocatură de afaceri, fără zgomot.</p>
+    </div>
+    <div><h4>Business</h4><ul><li><a href="#">Echipa</a></li><li><a href="#">Cultură</a></li><li><a href="#">Recunoașteri</a></li></ul></div>
+    <div><h4>Law</h4><ul><li><a href="#">Expertiză</a></li><li><a href="#">Cariere</a></li></ul></div>
+    <div><h4>Insights</h4><ul><li><a href="#">Legal news</a></li><li><a href="#">Podcast</a></li><li><a href="#">Conferințe</a></li><li><a href="#">Evenimente</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="#">office@filipandcompany.com</a></li><li><a href="#">+40 21 527 2000</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+    <div class="base"><span>© 2026 Filip &amp; Company</span><span>Concept M81 · „Quiet Authority" — neoficial</span></div>
+  </div>
+</footer>
+
+<div class="badge">HOMEPAGE CONCEPT · <b>M81</b> — concept neoficial</div>
+
+</body>
+</html>

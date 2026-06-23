@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import { CSSProperties } from "react";
 
 const socialLinks = [
@@ -10,6 +11,7 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const locale = useLocale();
   const wrap: CSSProperties = {
     backgroundColor: "var(--black)",
     padding: "42px 48px",
@@ -44,6 +46,13 @@ export default function Footer() {
         </Link>
 
         <nav style={socials}>
+          <Link href={`/${locale}/studii`}
+            style={{ fontSize:13, fontWeight:700, letterSpacing:"0.22em", textDecoration:"none", color:"rgba(255,255,255,0.88)", transition:"opacity 0.2s ease" }}
+            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.6"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+          >
+            STUDIES
+          </Link>
           {socialLinks.map((item) => (
             <a key={item.label} href={item.href} target="_blank" rel="noreferrer"
               style={{ fontSize:13, fontWeight:700, letterSpacing:"0.22em", textDecoration:"none", color:"rgba(255,255,255,0.88)", transition:"opacity 0.2s ease" }}
