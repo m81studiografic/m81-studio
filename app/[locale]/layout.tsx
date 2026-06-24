@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     : 'Your creative partner in Bucharest. We build visual identities, UI/UX, and high-performance digital products.';
 
   return {
-    metadataBase: new URL('https://m81.studio'),
+    metadataBase: new URL('https://m81studio.ro'),
     title,
     description,
     openGraph: {

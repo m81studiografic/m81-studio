@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { type Locale, STUDIES, getStudy } from "../_data/studies";
 import StudyDetail from "./_components/StudyDetail";
 
-/* Secțiune ascunsă: nu o indexăm până la lansarea oficială. */
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -23,6 +22,18 @@ export async function generateMetadata({
   return {
     title: `${study.client} — M81 Studies`,
     description: study.heroIntro[loc],
+    openGraph: {
+      title: `${study.client} — ${study.kicker[loc]}`,
+      description: study.heroIntro[loc],
+      type: "article",
+      images: [{ url: study.heroImage.src, width: study.heroImage.w, height: study.heroImage.h, alt: study.client }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${study.client} — ${study.kicker[loc]}`,
+      description: study.heroIntro[loc],
+      images: [study.heroImage.src],
+    },
   };
 }
 
