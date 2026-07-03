@@ -9,10 +9,10 @@
     "cta": "start a project"
   },
   "home": {
-    "hero1": "BUSINESS, BRANDING",
-    "hero2": "& DIGITAL",
-    "hero3": "EXPERIENCES.",
-    "tagline": "Branding and websites built for how people discover businesses today.",
+    "hero1": "BE UNDERSTOOD.",
+    "hero2": "BE",
+    "hero3": "TRUSTED.",
+    "tagline": "We help organizations understand who they are, define what makes them unique, and express it through strategy, branding and digital experiences that feel authentic, coherent and enduring.",
     "lucrari": "Selected work →",
     "stats_proiecte": "Concepts",
     "stats_ani": "Years of experience",
@@ -24,9 +24,9 @@
     "stats_abordare": "End-to-end approach",
     "selected": "Selected work",
     "toate": "All projects",
-    "cta_title": "Let's build\nsomething together.",
-    "cta_sub": "If you have an idea or a product you want to build, we can start with an initial conversation.",
-    "cta_btn": "Schedule a kickoff →"
+    "cta_title": "Let's understand first.",
+    "cta_sub": "We start from what you already are, not from what you want to build. We begin with a conversation and a close look at your organization.",
+    "cta_btn": "Schedule a conversation →"
   },
   "projects": {
     "back": "← Back to projects",
@@ -37,7 +37,7 @@
     "label": "What we do",
     "title": "Services",
     "subtitle": "complete.",
-    "desc": "We build cohesive digital identities that help businesses inspire trust and grow.",
+    "desc": "We start from understanding the organization. From what we discover, we build strategy, identity and digital experience.",
     "all": "All services ↗",
     "s1_title": "Strategy & Branding",
     "s1_desc": "We define brand direction through strategy, research, and a deep understanding of the business.",
@@ -50,12 +50,12 @@
   },
   "process": {
     "label": "How we work",
-    "p1_title": "Understanding",
-    "p1_desc": "We start by understanding the business, the product, and the people we're building for.",
-    "p2_title": "Structure",
-    "p2_desc": "We organize information and build clear, cohesive, easy-to-use experiences.",
-    "p3_title": "Build",
-    "p3_desc": "We turn strategy into branding and digital experiences ready to grow."
+    "p1_title": "Research",
+    "p1_desc": "We investigate the organization — culture, communication, positioning, digital experience — and identify patterns, contradictions and the opportunities not yet expressed.",
+    "p2_title": "Strategy",
+    "p2_desc": "From what we understand, we decide what truly matters to express, and how.",
+    "p3_title": "Expression",
+    "p3_desc": "We translate the strategy into identity, communication and digital experience."
   },
   "cta": {
     "ready": "Ready to start?"
