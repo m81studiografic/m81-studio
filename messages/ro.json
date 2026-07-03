@@ -10,10 +10,10 @@
   },
   "home": {
     "badge": "Portofoliu",
-    "hero1": "O ORGANIZAȚIE",
-    "hero2": "ÎNȚELEASĂ",
-    "hero3": "INSPIRĂ ÎNCREDERE.",
-    "tagline": "Înțelegem o organizație, definim ce o face unică și o exprimăm — prin strategie, branding și experiență digitală.",
+    "hero1": "AFACERI, BRANDING",
+    "hero2": "& EXPERIENȚE",
+    "hero3": "DIGITALE.",
+    "tagline": "Branding și website-uri create pentru felul în care oamenii descoperă afaceri astăzi.",
     "lucrari": "Lucrări selectate →",
     "stats_proiecte": "Concepte",
     "stats_ani": "Ani de experiență",
@@ -25,9 +25,9 @@
     "stats_abordare": "Abordare completă",
     "selected": "Lucru selectat",
     "toate": "Toate proiectele",
-    "cta_title": "Hai să înțelegem întâi.",
-    "cta_sub": "Pornim de la ceea ce ești deja, nu de la ceea ce vrei să construiești. Începem cu o discuție și o privire atentă asupra organizației tale.",
-    "cta_btn": "Programăm o discuție →"
+    "cta_title": "Hai să construim ceva împreună.",
+    "cta_sub": "Dacă ai o idee sau un produs pe care vrei să îl construiești, putem începe cu o discuție inițială.",
+    "cta_btn": "Programăm un kickoff →"
   },
   "projects": {
     "back": "← Înapoi la proiecte",
@@ -38,7 +38,7 @@
     "label": "Ce facem",
     "title": "Servicii",
     "subtitle": "complete.",
-    "desc": "Pornim de la înțelegerea organizației. Din ceea ce descoperim construim strategie, identitate și experiență digitală.",
+    "desc": "Construim identități digitale coerente care ajută afacerile să inspire încredere și să evolueze.",
     "all": "Toate serviciile ↗",
     "s1_title": "Strategie & Branding",
     "s1_desc": "Definim direcția brandului prin strategie, cercetare și înțelegerea afacerii.",
@@ -51,12 +51,12 @@
   },
   "process": {
     "label": "Cum lucrăm",
-    "p1_title": "Cercetare",
-    "p1_desc": "Investigăm organizația — cultură, comunicare, poziționare, experiență digitală — și identificăm tipare, contradicții și oportunitățile care nu sunt încă exprimate.",
-    "p2_title": "Strategie",
-    "p2_desc": "Din ceea ce înțelegem, decidem ce este cu adevărat important de exprimat și cum.",
-    "p3_title": "Expresie",
-    "p3_desc": "Traducem strategia în identitate, comunicare și experiență digitală."
+    "p1_title": "Înțelegere",
+    "p1_desc": "Începem prin a înțelege afacerea, produsul și oamenii pentru care construim.",
+    "p2_title": "Structură",
+    "p2_desc": "Organizăm informația și construim experiențe clare, coerente și ușor de folosit.",
+    "p3_title": "Construcție",
+    "p3_desc": "Transformăm strategia în branding și experiențe digitale pregătite pentru creștere."
   },
   "cta": {
     "ready": "Gata să începem?",
