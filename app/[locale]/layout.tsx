@@ -11,12 +11,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
 
   const title = locale === 'ro'
-    ? 'M81 Studio | Agenție de Design Digital & Web Development'
-    : 'M81 Studio | Digital Design & Web Development Agency';
+    ? 'M81 Studio | Branding, strategie și experiență digitală'
+    : 'M81 Studio | Branding, strategy & digital experience';
 
   const description = locale === 'ro'
-    ? 'Partenerul tău creativ din București. Construim identități vizuale, UI/UX și produse digitale performante.'
-    : 'Your creative partner in Bucharest. We build visual identities, UI/UX, and high-performance digital products.';
+    ? 'Studio de branding din București. Înțelegem organizațiile și le exprimăm identitatea prin strategie, design și experiență digitală.'
+    : 'A branding studio in Bucharest. We understand organizations and express their identity through strategy, design and digital experience.';
 
   return {
     metadataBase: new URL('https://m81studio.ro'),
