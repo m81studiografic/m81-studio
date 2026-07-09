@@ -5,6 +5,8 @@ import {
 import type { PortableTextBlock } from "@portabletext/types";
 import { urlFor } from "@/sanity/lib/image";
 import type { Locale, SanityImage } from "./types";
+import { ArticleAudio } from "./ArticleAudio";
+import { readingText } from "./readingText";
 
 /* ──────────────────────────────────────────────────────────────
    Randează corpul articolului (Portable Text) în limbajul vizual M81.
@@ -181,10 +183,27 @@ function buildComponents(locale: Locale): PortableTextComponents {
 export function ArticleBody({
   body,
   locale,
+  audioUrl,
+  minutes,
 }: {
   body?: PortableTextBlock[];
   locale: Locale;
+  audioUrl?: string;
+  minutes?: number;
 }) {
   if (!body || body.length === 0) return null;
-  return <PortableText value={body} components={buildComponents(locale)} />;
+  const spoken = readingText(body);
+  return (
+    <>
+      {spoken && (
+        <ArticleAudio
+          text={spoken}
+          locale={locale}
+          audioUrl={audioUrl}
+          minutes={minutes}
+        />
+      )}
+      <PortableText value={body} components={buildComponents(locale)} />
+    </>
+  );
 }

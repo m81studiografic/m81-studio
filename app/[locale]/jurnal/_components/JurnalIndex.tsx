@@ -9,6 +9,7 @@ import {
   categoryLabel,
 } from "../_lib/types";
 import type { CategoryGroup } from "../page";
+import { LegalBadge } from "../_lib/LegalBadge";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap');
@@ -69,7 +70,7 @@ function SectionHeader({ label, total, allHref, viewAll, dark }: { label: string
 }
 
 /* ── Card mare (lead-ul unei secțiuni) ── */
-function FeatureCard({ a, href, read, min, className = "" }: { a: ResolvedArticle; href: string; read: string; min: string; className?: string }) {
+function FeatureCard({ a, href, read, min, locale, className = "" }: { a: ResolvedArticle; href: string; read: string; min: string; locale: Locale; className?: string }) {
   return (
     <Link href={href} data-cur={read} className={`group block no-underline ${className}`}>
       <div className="relative overflow-hidden rounded-lg bg-[#e8e7e3]" style={{ aspectRatio: "16/9" }}>
@@ -78,6 +79,7 @@ function FeatureCard({ a, href, read, min, className = "" }: { a: ResolvedArticl
           className="w-full h-full object-cover transition-all duration-[900ms] ease-[cubic-bezier(.23,1,.32,1)] brightness-95 group-hover:scale-[1.04] group-hover:brightness-[0.85]" />
       </div>
       <span className="mt-6 inline-block text-[11px] font-extrabold tracking-[0.1em] uppercase text-[rgba(13,13,11,0.5)]">{categoryLabel(a.category)}</span>
+      {a.subcategory === "legal" && <LegalBadge locale={locale} className="ml-2.5 align-middle" />}
       <h3 className="text-[clamp(24px,2.8vw,38px)] font-extrabold tracking-[-0.03em] leading-[1.1] text-[var(--black)] mt-3 mb-4 m-0">{a.title}</h3>
       <p className="text-[clamp(14px,1.4vw,17px)] font-light leading-[1.7] text-[rgba(13,13,11,0.6)] m-0 line-clamp-2 max-w-[620px]">{a.excerpt}</p>
       {a.readTime && <span className="mt-4 block text-[12px] text-[rgba(13,13,11,0.45)]">{a.readTime} {min}</span>}
@@ -116,7 +118,7 @@ function CategoryBlock({ group, locale, t }: { group: CategoryGroup; locale: Loc
       <SectionHeader label={group.label} total={group.total} allHref={allHref} viewAll={t.viewAll} />
       <FadeUp>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-12">
-          <FeatureCard a={lead} href={href(lead)} read={read} min={t.min} className="lg:col-span-7" />
+          <FeatureCard a={lead} href={href(lead)} read={read} min={t.min} locale={locale} className="lg:col-span-7" />
           {rest.length > 0 && (
             <div className="lg:col-span-5 flex flex-col gap-7 lg:border-l lg:border-[rgba(13,13,11,0.1)] lg:pl-12">
               {rest.map((a) => (
@@ -278,6 +280,7 @@ export default function JurnalIndex({
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-9">
                     <div className="md:col-span-8">
                       <span className="text-[11px] font-extrabold tracking-[0.14em] uppercase text-[var(--gray-900)]">{categoryLabel(featured.category)}</span>
+                      {featured.subcategory === "legal" && <LegalBadge locale={locale} className="ml-2.5 align-middle" />}
                       <h2 className="text-[clamp(28px,4vw,52px)] font-extrabold tracking-[-0.035em] leading-[1.06] text-[var(--black)] mt-4 mb-5 m-0">{featured.title}</h2>
                       <p className="text-[clamp(15px,1.6vw,18px)] font-light leading-[1.7] text-[rgba(13,13,11,0.6)] max-w-[560px] m-0">{featured.excerpt}</p>
                     </div>

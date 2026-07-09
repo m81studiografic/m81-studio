@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FadeUp } from "@/app/components/m81-components";
 import { urlFor } from "@/sanity/lib/image";
 import { ArticleBody } from "../_lib/ArticleBody";
+import { LegalBadge } from "../_lib/LegalBadge";
 import { ARTICLE_CSS } from "../_lib/css";
 import { BackCta } from "./ResearchSkin";
 import {
@@ -69,6 +70,7 @@ export default function StrategicSkin({
               <span className="text-[11px] font-extrabold tracking-[0.14em] uppercase text-black bg-[var(--lime)] px-3 py-1.5 rounded-full">
                 {categoryLabel(article.category)}
               </span>
+              {article.subcategory === "legal" && <LegalBadge locale={locale} />}
               <span className="text-[13px] text-[rgba(13,13,11,0.5)]">
                 {formatDate(article.publishedAt, locale)}
               </span>
@@ -101,7 +103,7 @@ export default function StrategicSkin({
                   />
                 </div>
               </FadeUp>
-              <ArticleBody body={article.body} locale={locale} />
+              <ArticleBody body={article.body} locale={locale} audioUrl={article.audioUrl} minutes={article.readTime} />
             </article>
 
             {/* sidebar sticky */}

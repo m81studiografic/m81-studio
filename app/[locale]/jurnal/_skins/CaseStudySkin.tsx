@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FadeUp } from "@/app/components/m81-components";
 import { urlFor } from "@/sanity/lib/image";
 import { ArticleBody } from "../_lib/ArticleBody";
+import { LegalBadge } from "../_lib/LegalBadge";
 import { ARTICLE_CSS } from "../_lib/css";
 import { BackCta } from "./ResearchSkin";
 import {
@@ -46,6 +47,9 @@ export default function CaseStudySkin({
               <span className="inline-block w-2 h-2 rounded-full bg-[var(--lime)] mr-2.5 align-middle" />
               {categoryLabel(article.category)}
             </span>
+            {article.subcategory === "legal" && (
+              <LegalBadge locale={locale} className="ml-3 align-middle" />
+            )}
             <FadeUp>
               <h1 className="text-[clamp(36px,6.5vw,82px)] font-extrabold tracking-[-0.04em] leading-[1.0] text-[var(--black)] mt-6 max-w-[1080px] m-0">
                 {article.title}
@@ -95,7 +99,7 @@ export default function CaseStudySkin({
           {/* body / proces */}
           {article.body && article.body.length > 0 && (
             <section className="max-w-[820px] pb-[clamp(40px,6vw,80px)]">
-              <ArticleBody body={article.body} locale={locale} />
+              <ArticleBody body={article.body} locale={locale} audioUrl={article.audioUrl} minutes={article.readTime} />
             </section>
           )}
 

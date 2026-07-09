@@ -4,6 +4,7 @@ import { groq } from "next-sanity";
 const cardFields = `
   _id,
   category,
+  subcategory,
   "slug": slug.current,
   publishedAt,
   readTime,
@@ -15,16 +16,21 @@ const cardFields = `
   excerptRo, excerptEn
 `;
 
+/* Poartă de publicare programată: arată doar articolele a căror dată a trecut.
+   Un articol cu publishedAt în viitor rămâne invizibil până la acel moment
+   (ISR reîmprospătează la 60s, deci apare singur la ora stabilită). */
+const published = `defined(publishedAt) && dateTime(publishedAt) <= dateTime(now())`;
+
 /* Toate articolele, cele mai noi primele */
 export const allArticlesQuery = groq`
-  *[_type == "article" && defined(slug.current)] | order(publishedAt desc) {
+  *[_type == "article" && defined(slug.current) && ${published}] | order(publishedAt desc) {
     ${cardFields}
   }
 `;
 
 /* Articolul principal (featured); dacă nu există, cel mai nou */
 export const featuredArticleQuery = groq`
-  *[_type == "article" && defined(slug.current)]
+  *[_type == "article" && defined(slug.current) && ${published}]
     | order(featured desc, publishedAt desc)[0] {
     ${cardFields}
   }
@@ -32,7 +38,7 @@ export const featuredArticleQuery = groq`
 
 /* Articolele recente, excluzând unul (ex: featured) */
 export const recentArticlesQuery = groq`
-  *[_type == "article" && defined(slug.current) && _id != $excludeId]
+  *[_type == "article" && defined(slug.current) && _id != $excludeId && ${published}]
     | order(publishedAt desc)[0...$limit] {
     ${cardFields}
   }
@@ -40,7 +46,7 @@ export const recentArticlesQuery = groq`
 
 /* Articole pe categorie */
 export const articlesByCategoryQuery = groq`
-  *[_type == "article" && category == $category && defined(slug.current)]
+  *[_type == "article" && category == $category && defined(slug.current) && ${published}]
     | order(publishedAt desc) {
     ${cardFields}
   }
@@ -48,8 +54,10 @@ export const articlesByCategoryQuery = groq`
 
 /* Un singur articol, complet (cu corpul) */
 export const articleBySlugQuery = groq`
-  *[_type == "article" && slug.current == $slug][0] {
+  *[_type == "article" && slug.current == $slug && ${published}][0] {
     ${cardFields},
+    "audioRoUrl": audioRo.asset->url,
+    "audioEnUrl": audioEn.asset->url,
     reportUrl,
     caseClient,
     caseTimeline,
@@ -73,5 +81,5 @@ export const articleBySlugQuery = groq`
 
 /* Toate slug-urile (pentru generateStaticParams) */
 export const allSlugsQuery = groq`
-  *[_type == "article" && defined(slug.current)].slug.current
+  *[_type == "article" && defined(slug.current) && ${published}].slug.current
 `;

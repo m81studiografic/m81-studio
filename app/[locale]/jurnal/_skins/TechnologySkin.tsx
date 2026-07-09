@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FadeUp } from "@/app/components/m81-components";
 import { urlFor } from "@/sanity/lib/image";
 import { ArticleBody } from "../_lib/ArticleBody";
+import { LegalBadge } from "../_lib/LegalBadge";
 import { ARTICLE_CSS } from "../_lib/css";
 import { BackCta } from "./ResearchSkin";
 import {
@@ -44,6 +45,9 @@ export default function TechnologySkin({
               <span className="inline-block w-2 h-2 rounded-full bg-[var(--lime)] mr-2.5 align-middle" />
               {categoryLabel(article.category)}
             </span>
+            {article.subcategory === "legal" && (
+              <LegalBadge locale={locale} className="ml-3 align-middle" />
+            )}
             <FadeUp>
               <h1 className="text-[clamp(32px,5.5vw,66px)] font-extrabold tracking-[-0.04em] leading-[1.03] text-[var(--black)] mt-6 m-0">
                 {article.title}
@@ -87,7 +91,7 @@ export default function TechnologySkin({
           </FadeUp>
 
           <div className="max-w-[760px] mx-auto pb-[clamp(56px,9vw,120px)]">
-            <ArticleBody body={article.body} locale={locale} />
+            <ArticleBody body={article.body} locale={locale} audioUrl={article.audioUrl} minutes={article.readTime} />
           </div>
         </article>
 

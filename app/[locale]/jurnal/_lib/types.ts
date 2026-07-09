@@ -27,6 +27,7 @@ export interface SanityImage {
 export interface ArticleDoc {
   _id: string;
   category: Category;
+  subcategory?: string;
   slug: string;
   publishedAt: string;
   readTime?: number;
@@ -51,12 +52,15 @@ export interface ArticleDoc {
   takeawaysEn?: string[];
   bodyRo?: PortableTextBlock[];
   bodyEn?: PortableTextBlock[];
+  audioRoUrl?: string;
+  audioEnUrl?: string;
 }
 
 /* Articol rezolvat pe o singură limbă (cu fallback pe RO) */
 export interface ResolvedArticle {
   _id: string;
   category: Category;
+  subcategory?: string;
   slug: string;
   publishedAt: string;
   readTime?: number;
@@ -75,6 +79,7 @@ export interface ResolvedArticle {
   excerpt: string;
   takeaways?: string[];
   body?: PortableTextBlock[];
+  audioUrl?: string;
 }
 
 const CATEGORY_LABELS: Record<Category, string> = {
@@ -101,6 +106,7 @@ export function resolveArticle(
   return {
     _id: doc._id,
     category: doc.category,
+    subcategory: doc.subcategory,
     slug: doc.slug,
     publishedAt: doc.publishedAt,
     readTime: doc.readTime,
@@ -128,6 +134,8 @@ export function resolveArticle(
       locale === "en" && doc.bodyEn && doc.bodyEn.length
         ? doc.bodyEn
         : doc.bodyRo,
+    /* audio: fără fallback între limbi (o voce RO n-ar trebui să citească pagina EN) */
+    audioUrl: locale === "en" ? doc.audioEnUrl : doc.audioRoUrl,
   };
 }
 

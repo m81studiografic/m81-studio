@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FadeUp } from "@/app/components/m81-components";
 import { urlFor } from "@/sanity/lib/image";
 import { type Locale, type ResolvedArticle, categoryLabel } from "../_lib/types";
+import { LegalBadge } from "../_lib/LegalBadge";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap');
@@ -14,7 +15,7 @@ const CSS = `
 const img = (a: ResolvedArticle, w: number) =>
   urlFor(a.coverImage).width(w).fit("max").auto("format").url();
 
-function GridCard({ a, href, read, min, n }: { a: ResolvedArticle; href: string; read: string; min: string; n: string }) {
+function GridCard({ a, href, read, min, n, locale }: { a: ResolvedArticle; href: string; read: string; min: string; n: string; locale: Locale }) {
   return (
     <Link href={href} data-cur={read} className="group block no-underline">
       <div className="relative overflow-hidden rounded-md bg-[#e8e7e3]" style={{ aspectRatio: "4/3" }}>
@@ -24,6 +25,7 @@ function GridCard({ a, href, read, min, n }: { a: ResolvedArticle; href: string;
       </div>
       <div className="mt-5">
         <span className="text-[11px] font-extrabold tracking-[0.1em] uppercase"><span className="text-[var(--gray-900)]">{n}</span> <span className="text-[rgba(13,13,11,0.5)]">/ {categoryLabel(a.category)}</span></span>
+        {a.subcategory === "legal" && <LegalBadge locale={locale} className="ml-2.5 align-middle" />}
         <h3 className="text-[clamp(19px,1.9vw,24px)] font-extrabold tracking-[-0.025em] text-[var(--black)] leading-[1.18] mt-3 mb-3 m-0">{a.title}</h3>
         <p className="text-[14px] leading-[1.7] text-[rgba(13,13,11,0.6)] m-0 mb-4 line-clamp-2">{a.excerpt}</p>
         {a.readTime && <span className="text-[12px] text-[rgba(13,13,11,0.45)]">{a.readTime} {min}</span>}
@@ -96,6 +98,7 @@ export default function CategoryView({
                   </div>
                   <div className="lg:col-span-5">
                     <span className="text-[11px] font-extrabold tracking-[0.14em] uppercase text-[rgba(13,13,11,0.5)]">{categoryLabel(lead.category)}</span>
+                    {lead.subcategory === "legal" && <LegalBadge locale={locale} className="ml-2.5 align-middle" />}
                     <h2 className="text-[clamp(26px,3.2vw,44px)] font-extrabold tracking-[-0.035em] leading-[1.08] text-[var(--black)] mt-4 mb-5 m-0">{lead.title}</h2>
                     <p className="text-[clamp(15px,1.5vw,18px)] font-light leading-[1.7] text-[rgba(13,13,11,0.6)] m-0 mb-5 line-clamp-3">{lead.excerpt}</p>
                     <span className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.16em] uppercase text-[var(--black)] border-b border-[var(--black)] pb-[3px] group-hover:border-[var(--lime)] transition-colors">
@@ -113,7 +116,7 @@ export default function CategoryView({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-9 gap-y-14">
                 {rest.map((a, i) => (
                   <FadeUp key={a._id} delay={(i % 3) * 90}>
-                    <GridCard a={a} href={href(a)} read={read} min={min} n={String(i + 2).padStart(2, "0")} />
+                    <GridCard a={a} href={href(a)} read={read} min={min} n={String(i + 2).padStart(2, "0")} locale={locale} />
                   </FadeUp>
                 ))}
               </div>
