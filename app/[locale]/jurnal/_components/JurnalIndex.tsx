@@ -258,6 +258,20 @@ export default function JurnalIndex({
             </FadeUp>
           </header>
 
+          {/* CATEGORII — click pentru toate articolele din categorie */}
+          {groups.length > 0 && (
+            <nav aria-label={isRo ? "Categorii jurnal" : "Journal categories"}
+              className="py-[clamp(20px,3vw,32px)] border-b border-[rgba(13,13,11,0.08)] flex flex-wrap gap-2.5">
+              {groups.map((g) => (
+                <Link key={g.slug} href={`/${locale}/jurnal/c/${g.slug}`} data-cur={t.viewAll}
+                  className="group inline-flex items-center gap-2 text-[12px] font-extrabold tracking-[0.06em] uppercase text-[var(--gray-900)] border border-[rgba(13,13,11,0.18)] rounded-full px-4 py-2 no-underline transition-colors hover:bg-[var(--black)] hover:text-[var(--cream)] hover:border-[var(--black)]">
+                  {g.label}
+                  <span className="text-[rgba(13,13,11,0.4)] group-hover:text-[rgba(255,255,255,0.55)]">{g.total}</span>
+                </Link>
+              ))}
+            </nav>
+          )}
+
           {!featured && (
             <div className="py-[clamp(80px,12vw,160px)] text-center text-[rgba(13,13,11,0.5)] text-[clamp(16px,2vw,20px)] font-light">
               {t.empty}
