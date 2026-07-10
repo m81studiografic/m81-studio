@@ -258,15 +258,24 @@ export default function JurnalIndex({
             </FadeUp>
           </header>
 
-          {/* CATEGORII — click pentru toate articolele din categorie */}
+          {/* CATEGORII — index editorial, click pentru toate articolele din categorie */}
           {groups.length > 0 && (
             <nav aria-label={isRo ? "Categorii jurnal" : "Journal categories"}
-              className="py-[clamp(20px,3vw,32px)] border-b border-[rgba(13,13,11,0.08)] flex flex-wrap gap-2.5">
-              {groups.map((g) => (
+              className="py-[clamp(22px,3.5vw,40px)] border-b border-[rgba(13,13,11,0.08)] flex flex-wrap items-center gap-x-[clamp(18px,2.8vw,44px)] gap-y-5">
+              <span className="text-[10px] font-black tracking-[0.24em] uppercase text-[rgba(13,13,11,0.32)] mr-1">
+                {isRo ? "Explorează" : "Explore"}
+              </span>
+              {groups.map((g, i) => (
                 <Link key={g.slug} href={`/${locale}/jurnal/c/${g.slug}`} data-cur={t.viewAll}
-                  className="group inline-flex items-center gap-2 text-[12px] font-extrabold tracking-[0.06em] uppercase text-[var(--gray-900)] border border-[rgba(13,13,11,0.18)] rounded-full px-4 py-2 no-underline transition-colors hover:bg-[var(--black)] hover:text-[var(--cream)] hover:border-[var(--black)]">
-                  {g.label}
-                  <span className="text-[rgba(13,13,11,0.4)] group-hover:text-[rgba(255,255,255,0.55)]">{g.total}</span>
+                  className="group relative inline-flex items-baseline gap-2 no-underline pb-1.5">
+                  <span className="text-[10px] font-bold tabular-nums text-[rgba(13,13,11,0.35)] group-hover:text-[var(--black)] transition-colors">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[clamp(16px,1.7vw,22px)] font-extrabold tracking-[-0.02em] text-[var(--black)] leading-none">
+                    {g.label}
+                  </span>
+                  <span className="text-[var(--black)] opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">↗</span>
+                  <span className="absolute left-0 bottom-0 h-[2px] w-full bg-[var(--lime)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-[350ms] ease-[cubic-bezier(.23,1,.32,1)]" />
                 </Link>
               ))}
             </nav>
