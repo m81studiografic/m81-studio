@@ -1,5 +1,5 @@
 // Articol Strategic Insights — "Distanța dintre cât de bună e o firmă și cât de bună pare" (RO + EN).
-// Inspirat din investigația Filip & Company: aliniere, nu reinventare. Ancorat la avocatură + cârlig.
+// Inspirat din studiul M81 despre autoritate: aliniere, nu reinventare. Ancorat la avocatură + cârlig.
 const TOKEN = process.env.SANITY_TOKEN;
 const PROJECT = "bkejlgaa";
 const DATASET = "production";

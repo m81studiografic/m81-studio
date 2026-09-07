@@ -1,5 +1,5 @@
 // Articol Branding & Experience — "Un brand nu se inventează, se descoperă" (RO + EN).
-// Inspirat din investigația Filip & Company: brandingul exprimă fidel fondul, nu inventează o fațadă.
+// Inspirat din studiul M81 despre autoritate: brandingul exprimă fidel fondul, nu inventează o fațadă.
 const TOKEN = process.env.SANITY_TOKEN;
 const PROJECT = "bkejlgaa";
 const DATASET = "production";

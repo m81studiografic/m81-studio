@@ -1,5 +1,5 @@
 // Articol Technology & Experience — "Tehnologia nu înlocuiește încrederea, o amplifică" (RO + EN).
-// Inspirat din investigația Filip & Company (planșa "Experiență inteligentă" + "Looking Forward").
+// Inspirat din studiul M81 despre autoritate (planșa "Experiență inteligentă" + "Looking Forward").
 const TOKEN = process.env.SANITY_TOKEN;
 const PROJECT = "bkejlgaa";
 const DATASET = "production";

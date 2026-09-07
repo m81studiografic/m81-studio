@@ -1,4 +1,7 @@
-// Leagă cârligele celor 5 articole de studiul Filip (link Portable Text). Dedup orice lure text vechi.
+// Repoziționează cârligele celor 4 articole tematice de la vechiul studiu Filip
+// (retras din publicare) la noul studiu independent "The Form of Authority".
+// Al 5-lea articol din lista veche (critica Filip, cu numele real) a fost șters
+// complet din Sanity — nu mai există, deci nu apare aici.
 const TOKEN = process.env.SANITY_TOKEN;
 const BASE = "https://bkejlgaa.api.sanity.io/v2025-05-30";
 const k = () => Math.random().toString(36).slice(2, 12);
@@ -24,28 +27,18 @@ function withLure(body, parts, href, marker) {
   return out;
 }
 
-const STUDY_RO = "/ro/studii/filip-and-company";
-const STUDY_EN = "/en/studii/filip-and-company";
+const STUDY_RO = "/ro/studii/the-form-of-authority";
+const STUDY_EN = "/en/studii/the-form-of-authority";
 
 const thematicRo = [
   { t: "La M81 studiem și construim experiențe de brand și digitale pentru firme de avocatură — pornind de la ceea ce există deja, nu de la ceea ce ar putea părea. Am pus asta în practică într-" },
-  { t: "un studiu independent pe Filip & Company", l: true },
+  { t: "un studiu independent: Forma Autorității", l: true },
   { t: ". Dacă te recunoști în aceste întrebări, putem începe cu o discuție." },
 ];
 const thematicEn = [
   { t: "At M81 we study and build brand and digital experiences for law firms — starting from what already exists, not from what might appear. We put this into practice in " },
-  { t: "an independent study of Filip & Company", l: true },
+  { t: "an independent study: The Form of Authority", l: true },
   { t: ". If you recognize yourself in these questions, we can begin with a conversation." },
-];
-const critiqueRo = [
-  { t: "Aceasta este o analiză independentă, realizată de M81 ca exercițiu de observație. Versiunea completă — cu direcția de concept propusă — este în " },
-  { t: "studiul nostru Filip & Company", l: true },
-  { t: ". Facem astfel de analize pentru firme de avocatură care vor ca experiența lor digitală să reflecte nivelul real al organizației." },
-];
-const critiqueEn = [
-  { t: "This is an independent analysis, carried out by M81 as an exercise in observation. The full version — with the proposed concept direction — is in " },
-  { t: "our Filip & Company study", l: true },
-  { t: ". We make analyses like this for law firms that want their digital experience to reflect the organization's real level." },
 ];
 
 const ARTICLES = [
@@ -53,7 +46,6 @@ const ARTICLES = [
   { slug: "tehnologia-nu-inlocuieste-increderea-o-amplifica", ro: thematicRo, en: thematicEn },
   { slug: "avocatura-din-romania-puternica-in-fond-uniforma-in-forma", ro: thematicRo, en: thematicEn },
   { slug: "distanta-dintre-cat-de-buna-e-o-firma-si-cat-de-buna-pare", ro: thematicRo, en: thematicEn },
-  { slug: "filip-and-company-cand-website-ul-nu-reflecta-nivelul-brandului", ro: critiqueRo, en: critiqueEn },
 ];
 
 async function main() {

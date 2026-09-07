@@ -115,6 +115,7 @@ export default function StudyDetail({ study, locale }: { study: Study; locale: L
           </div>
         </div>
 
+        {study.metrics && study.metrics.length > 0 && (
         <Reveal>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 1, backgroundColor: "rgba(0,0,0,0.1)", border: "1px solid rgba(0,0,0,0.1)", marginTop: 64 }}>
             {study.metrics.map((m, i) => (
@@ -127,6 +128,7 @@ export default function StudyDetail({ study, locale }: { study: Study; locale: L
             ))}
           </div>
         </Reveal>
+        )}
       </Section>
 
       {/* ════ 02 — RESEARCH STUDY ════ */}
@@ -204,7 +206,6 @@ function Frame({ img, alt, browser, priority }: { img: Img; alt: string; browser
       <div style={{ border: "1px solid rgba(0,0,0,0.12)", borderRadius: 12, overflow: "hidden", backgroundColor: "#fff", boxShadow: "0 30px 60px -30px rgba(0,0,0,0.22)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "11px 14px", borderBottom: "1px solid rgba(0,0,0,0.08)", backgroundColor: "#f4f4f2" }}>
           {["#ff5f57", "#febc2e", "#28c840"].map((c) => <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: c, opacity: 0.85 }} />)}
-          <span style={{ marginLeft: 10, fontSize: 10.5, fontWeight: 600, color: "rgba(0,0,0,0.4)" }}>filipandcompany.com</span>
         </div>
         <div style={{ position: "relative", width: "100%", height: "clamp(300px, 42vh, 460px)", overflow: "hidden", backgroundColor: "#fff" }}>
           <Image src={img.src} alt={alt} fill loading="lazy" sizes="(max-width: 1180px) 100vw, 600px" style={{ objectFit: "cover", objectPosition: "top" }} />
