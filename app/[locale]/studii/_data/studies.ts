@@ -441,6 +441,7 @@ const V = {
   makerMark: { src: "/studies/veldra/maker-mark.png", w: 2048, h: 1152 },
   whatCouldYouMake: { src: "/studies/veldra/what-could-you-make.png", w: 1600, h: 2000 },
   showcase: { src: "/studies/veldra/brand-showcase.png", w: 2048, h: 1152 },
+  materialWorld: { src: "/studies/veldra/material-world.png", w: 2016, h: 1344 },
 };
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -518,22 +519,29 @@ const whatMakesItPossible: Study = {
       ],
     },
     {
-      t: "text",
+      t: "principles",
       heading: { ro: "Ce am cercetat", en: "What we researched" },
-      body: [
-        { ro: "Cercetarea a avut două niveluri.", en: "The research worked on two levels." },
+      lead: { ro: "Cercetarea a avut două niveluri.", en: "The research worked on two levels." },
+      items: [
         {
-          ro: "Primul a urmărit o singură organizație, în profunzime: cum se definește public, ce poate fi observat efectiv în activitatea ei, ce semnale transmite, cum își construiește credibilitatea, cum comunică și ce experiență oferă celui care o descoperă online. Pe tot parcursul am ținut separat ce declară organizația de ce poate fi documentat: fotografii de atelier, desene tehnice, serii de lucru, proiecte instalate.",
-          en: "The first followed a single organization in depth: how it defines itself publicly, what can actually be observed in its work, what signals it sends, how it builds credibility, how it communicates, and what experience it offers someone discovering it online. Throughout, we kept what the organization declares separate from what can be documented: workshop photographs, technical drawings, work sequences, installed projects.",
+          k: { ro: "În profunzime · o organizație", en: "In depth · one organization" },
+          v: {
+            ro: "Primul a urmărit o singură organizație, în profunzime: cum se definește public, ce poate fi observat efectiv în activitatea ei, ce semnale transmite, cum își construiește credibilitatea, cum comunică și ce experiență oferă celui care o descoperă online. Pe tot parcursul am ținut separat ce declară organizația de ce poate fi documentat: fotografii de atelier, desene tehnice, serii de lucru, proiecte instalate.",
+            en: "The first followed a single organization in depth: how it defines itself publicly, what can actually be observed in its work, what signals it sends, how it builds credibility, how it communicates, and what experience it offers someone discovering it online. Throughout, we kept what the organization declares separate from what can be documented: workshop photographs, technical drawings, work sequences, installed projects.",
+          },
         },
         {
-          ro: "Al doilea nivel a pus-o alături de 12 organizații din aceeași categorie. Comparația a avut un rol precis: să separe ce aparține organizației de ce aparține, de fapt, industriei.",
-          en: "The second level set it alongside 12 organizations from the same category. The comparison had a precise role: to separate what belongs to the organization from what actually belongs to the industry.",
+          k: { ro: "În comparație · 12 organizații", en: "In comparison · 12 organizations" },
+          v: {
+            ro: "Al doilea nivel a pus-o alături de 12 organizații din aceeași categorie. Comparația a avut un rol precis: să separe ce aparține organizației de ce aparține, de fapt, industriei.",
+            en: "The second level set it alongside 12 organizations from the same category. The comparison had a precise role: to separate what belongs to the organization from what actually belongs to the industry.",
+          },
         },
       ],
     },
     {
-      t: "text",
+      t: "split",
+      img: V.finishedObject,
       heading: { ro: "01 · Rezultatul ocupă tot cadrul", en: "01 · The result fills the frame" },
       body: [
         {
@@ -545,6 +553,10 @@ const whatMakesItPossible: Study = {
           en: "The organization studied in depth had material for far more: dimensioned drawings, mechanisms, photo series of the same object at different stages, the relationship between a rendering and the object built from it. All of it existed, but it sat at the edge of the experience. In the foreground was a portfolio of objects without titles, without context and without the workshop's role in making them.",
         },
       ],
+      caption: {
+        ro: "Ce vede publicul: obiectul terminat. Rezultatul concentrează toată atenția, iar drumul care l-a făcut posibil rămâne în afara cadrului. Imagine din demonstrația VELDRA.",
+        en: "What the public sees: the finished object. The result holds all the attention, while the path that made it possible stays outside the frame. Image from the VELDRA demonstration.",
+      },
     },
     {
       t: "list",
@@ -554,16 +566,6 @@ const whatMakesItPossible: Study = {
         { ro: "12/12 · decizii tehnice nearătate sistematic", en: "12/12 · technical decisions not shown systematically" },
         { ro: "12/12 · granița atelier / autorul ideii, neclarificată", en: "12/12 · workshop / idea author boundary left unclear" },
       ],
-    },
-    {
-      t: "full",
-      img: V.finishedObject,
-      label: { ro: "Cercetare", en: "Research" },
-      title: { ro: "Ce vede publicul: obiectul terminat.", en: "What the public sees: the finished object." },
-      caption: {
-        ro: "Rezultatul concentrează toată atenția, iar drumul care l-a făcut posibil rămâne în afara cadrului. Imagine din demonstrația VELDRA.",
-        en: "The result holds all the attention, while the path that made it possible stays outside the frame. Image from the VELDRA demonstration.",
-      },
     },
     {
       t: "pull",
@@ -598,8 +600,14 @@ const whatMakesItPossible: Study = {
       ],
     },
     {
-      t: "text",
+      t: "split",
+      img: V.materialWorld,
+      flip: true,
       heading: { ro: "03 · Competența apare ca listă. Munca funcționează ca sistem.", en: "03 · Competence appears as a list. The work functions as a system." },
+      caption: {
+        ro: "Materiale diferite, puse în relație de același desen. Imagine din demonstrația VELDRA.",
+        en: "Different materials, brought into relation by the same drawing. Image from the VELDRA demonstration.",
+      },
       body: [
         {
           ro: "Metal, lemn, sculptură, pictură, fabricație digitală, montaj: fiecare serviciu avea pagina lui. Proiectele documentate arătau altceva. Aceeași piesă trecea prin mai multe discipline, în ordinea cerută de problemă.",
@@ -643,13 +651,16 @@ const whatMakesItPossible: Study = {
       ],
     },
     {
-      t: "text",
+      t: "principles",
       heading: { ro: "Direcția decalajului", en: "The direction of the gap" },
-      body: [
-        {
-          ro: "Pusă cap la cap, cercetarea a arătat un decalaj constant, mereu în aceeași direcție: ce se poate observa în atelier depășește ce se exprimă public, iar ce se exprimă depășește ce ajunge publicul să trăiască.",
-          en: "Taken together, the research revealed a consistent gap, always running in the same direction: what can be observed in the workshop exceeds what is expressed publicly, and what is expressed exceeds what the public actually experiences.",
-        },
+      lead: {
+        ro: "Pusă cap la cap, cercetarea a arătat un decalaj constant, mereu în aceeași direcție: ce se poate observa în atelier depășește ce se exprimă public, iar ce se exprimă depășește ce ajunge publicul să trăiască.",
+        en: "Taken together, the research revealed a consistent gap, always running in the same direction: what can be observed in the workshop exceeds what is expressed publicly, and what is expressed exceeds what the public actually experiences.",
+      },
+      items: [
+        { k: { ro: "01 · Observat în atelier", en: "01 · Observed in the workshop" }, v: { ro: "Desene cotate, mecanisme, serii de lucru, montaj.", en: "Dimensioned drawings, mechanisms, work sequences, installation." } },
+        { k: { ro: "02 · Exprimat public", en: "02 · Expressed publicly" }, v: { ro: "Categoria, lista de servicii, obiectul terminat.", en: "The category, the list of services, the finished object." } },
+        { k: { ro: "03 · Trăit de public", en: "03 · Experienced by the public" }, v: { ro: "Imagini fără context și puține repere despre ce ar putea cere.", en: "Images without context, and few cues about what to ask for." } },
       ],
     },
     {
@@ -898,7 +909,10 @@ const whatMakesItPossible: Study = {
       },
     },
     {
-      t: "text",
+      t: "split",
+      img: V.heroProject,
+      flip: true,
+      label: { ro: "Proiect", en: "Project" },
       heading: { ro: "Proiectul 024", en: "Project 024" },
       body: [
         {
@@ -906,21 +920,14 @@ const whatMakesItPossible: Study = {
           en: "To demonstrate the concept, we built a complete project: the Folded Acoustic Lantern, an acoustic light fitting with folded geometry. It runs through the entire demonstration, from sketch to installed object. The reason is simple: in the research, this was exactly what was missing. A project that shows not only what exists now, but what had to be figured out for it to exist.",
         },
       ],
-    },
-    {
-      t: "full",
-      img: V.heroProject,
-      label: { ro: "Proiect", en: "Project" },
-      title: { ro: "De la intenție la obiect", en: "From intention to object" },
       caption: {
-        ro: "Intention → Development → Resolution → Object. Schița devine dimensiune, dimensiunea devine îmbinare, îmbinarea devine obiect.",
-        en: "Intention → Development → Resolution → Object. The sketch becomes a dimension, the dimension becomes a joint, the joint becomes an object.",
+        ro: "De la intenție la obiect: Intention → Development → Resolution → Object. Schița devine dimensiune, dimensiunea devine îmbinare, îmbinarea devine obiect.",
+        en: "From intention to object: Intention → Development → Resolution → Object. The sketch becomes a dimension, the dimension becomes a joint, the joint becomes an object.",
       },
     },
     {
       t: "split",
       img: V.technical,
-      flip: true,
       heading: { ro: "Decizia devine vizibilă", en: "The decision becomes visible" },
       body: [
         {
@@ -938,18 +945,15 @@ const whatMakesItPossible: Study = {
       },
     },
     {
-      t: "full",
+      t: "split",
       img: V.homepage,
+      flip: true,
       label: { ro: "Experiența digitală", en: "Digital experience" },
-      title: { ro: "VELDRA makes non-standard physical ideas buildable.", en: "VELDRA makes non-standard physical ideas buildable." },
-      caption: {
-        ro: "Website-ul pornește de la intenția vizitatorului și îl conduce spre proiecte explicate, proces și capabilități conectate.",
-        en: "The website starts from the visitor's intention and leads them towards explained projects, process and connected capabilities.",
-      },
-    },
-    {
-      t: "text",
       heading: { ro: "Website-ul: de la catalog la drum", en: "The website: from catalogue to path" },
+      caption: {
+        ro: "„VELDRA makes non-standard physical ideas buildable.” Website-ul pornește de la intenția vizitatorului și îl conduce spre proiecte explicate, proces și capabilități conectate.",
+        en: "“VELDRA makes non-standard physical ideas buildable.” The website starts from the visitor's intention and leads them towards explained projects, process and connected capabilities.",
+      },
       body: [
         {
           ro: "Intrarea începe cu o întrebare: „What are you trying to make?”. Vizitatorul poate veni doar cu o intenție.",
@@ -985,8 +989,15 @@ const whatMakesItPossible: Study = {
       },
     },
     {
-      t: "text",
+      t: "split",
+      img: V.whatCouldYouMake,
+      flip: true,
+      label: { ro: "Invitație", en: "Invitation" },
       heading: { ro: "O consecință: ce ai putea face?", en: "A consequence: what could you make?" },
+      caption: {
+        ro: "What could you make? Portofoliul dovedește capacitatea. Invitația arată cât de departe poate merge.",
+        en: "What could you make? The portfolio proves capability. The invitation shows how far it can go.",
+      },
       body: [
         {
           ro: "Odată ce drumul devine vizibil, se schimbă și întrebarea pe care și-o poate pune un client. Un brand care arată doar ce a construit atrage cereri pentru lucruri asemănătoare. Un brand care arată cum se află soluția pentru ceva nou îi permite clientului să vină cu ce vrea să existe.",
@@ -1010,16 +1021,6 @@ const whatMakesItPossible: Study = {
         { ro: "What we can do — capabilitatea", en: "What we can do — capability" },
         { ro: "What could you make? — posibilitatea", en: "What could you make? — possibility" },
       ],
-    },
-    {
-      t: "full",
-      img: V.whatCouldYouMake,
-      label: { ro: "Invitație", en: "Invitation" },
-      title: { ro: "What could you make?", en: "What could you make?" },
-      caption: {
-        ro: "Portofoliul dovedește capacitatea. Invitația arată cât de departe poate merge.",
-        en: "The portfolio proves capability. The invitation shows how far it can go.",
-      },
     },
     {
       t: "full",
