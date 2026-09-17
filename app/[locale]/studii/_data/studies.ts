@@ -1055,8 +1055,8 @@ const whatMakesItPossible: Study = {
     {
       t: "pull",
       v: {
-        ro: "Un atelier cunoscut prin ce a construit ajunge să fie căutat pentru ce a construit deja.",
-        en: "A workshop known for what it has built ends up being sought out for what it has already built.",
+        ro: "Valoarea reală a atelierului nu este colecția de obiecte pe care le-a produs. Este capacitatea de a face posibile obiecte diferite, inclusiv unele care încă nu există.",
+        en: "The workshop's real value isn't the collection of objects it has produced. It's the ability to make different objects possible, including ones that don't exist yet.",
       },
     },
     {
